@@ -107,8 +107,19 @@ export function PremiumHoodieSection() {
           </div>
         </div>
 
-        {/* Carousel Container */}
-        <div className="relative w-full">
+        {/* Mobile Swipe Gallery (Native Snap) */}
+        <div className="md:hidden w-full overflow-x-auto snap-x snap-mandatory flex gap-4 px-4 pb-8 no-scrollbar">
+          {displayProducts.map((product) => (
+            <div key={product.id} className="min-w-[85vw] snap-center">
+              <ProductCard product={product} onQuickView={handleQuickView} theme="light" />
+            </div>
+          ))}
+          {/* Snap spacer at end */}
+          <div className="min-w-[4vw] snap-center" />
+        </div>
+
+        {/* Desktop Carousel Container */}
+        <div className="relative w-full hidden md:block">
           {/* Navigation Arrows - Desktop Only */}
           <button
             onClick={handlePrev}
