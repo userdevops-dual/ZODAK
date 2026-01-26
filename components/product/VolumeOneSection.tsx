@@ -43,6 +43,7 @@ export function VolumeOneSection() {
 
     return (
         <section
+            id="volume-one"
             className="relative w-full bg-black min-h-[100dvh]"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
