@@ -45,25 +45,21 @@ export function Navbar() {
                 <div className="md:hidden">
                     <Sheet>
                         <SheetTrigger asChild>
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="bg-white text-black hover:bg-neutral-50 shadow-sm border border-neutral-100 rounded-lg w-10 h-10 flex items-center justify-center touch-target"
-                            >
+                            <Button variant="ghost" size="icon" className="hover:bg-transparent touch-target">
                                 <Menu className="w-5 h-5" />
                             </Button>
                         </SheetTrigger>
-                        <SheetContent side="left" className="w-[300px] sm:w-[350px] p-0">
-                            <div className="flex flex-col h-full">
+                        <SheetContent side="left" className="w-[300px] sm:w-[350px] p-0 bg-white border-r">
+                            <div className="flex flex-col h-full text-black">
                                 <div className="p-6 border-b border-gray-100">
-                                    <Link href="/" className="text-2xl font-bold tracking-[0.3em]">ZODAK</Link>
+                                    <Link href="/" className="text-2xl font-bold tracking-[0.3em] text-black">ZODAK</Link>
                                 </div>
                                 <nav className="flex-1 p-6 space-y-1">
                                     {["HOODS"].map((item) => (
                                         <SheetClose asChild key={item}>
                                             <PremiumLink
                                                 href="/shop"
-                                                className="block py-4 text-lg uppercase tracking-widest border-b border-gray-50"
+                                                className="block py-4 text-lg uppercase tracking-widest border-b border-gray-50 text-black"
                                                 alwaysShowStars
                                             >
                                                 {item}
@@ -71,12 +67,12 @@ export function Navbar() {
                                         </SheetClose>
                                     ))}
                                     <SheetClose asChild>
-                                        <Link href="/about" className="block py-4 text-lg uppercase tracking-widest hover:pl-2 transition-all border-b border-gray-50">
+                                        <Link href="/about" className="block py-4 text-lg uppercase tracking-widest hover:pl-2 transition-all border-b border-gray-50 text-black">
                                             About
                                         </Link>
                                     </SheetClose>
                                     <SheetClose asChild>
-                                        <Link href="/contact" className="block py-4 text-lg uppercase tracking-widest hover:pl-2 transition-all border-b border-gray-50">
+                                        <Link href="/contact" className="block py-4 text-lg uppercase tracking-widest hover:pl-2 transition-all border-b border-gray-50 text-black">
                                             Contact
                                         </Link>
                                     </SheetClose>
