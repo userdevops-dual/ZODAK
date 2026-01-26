@@ -78,7 +78,7 @@ export function PremiumHoodieSection() {
 
   return (
     <section
-      className="group/slider relative min-h-[600px] lg:h-[100dvh] w-full bg-white flex flex-col justify-center overflow-hidden border-t border-neutral-50 py-10 sm:py-12"
+      className="group/slider relative h-auto min-h-[500px] lg:h-[100dvh] w-full bg-white flex flex-col justify-center overflow-hidden border-t border-neutral-50 py-8 sm:py-12"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >

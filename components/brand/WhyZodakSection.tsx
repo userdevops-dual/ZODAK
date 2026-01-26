@@ -28,7 +28,7 @@ const features = [
 
 export function WhyZodakSection() {
     return (
-        <section className="py-12 lg:py-24 bg-white text-black border-b border-gray-100">
+        <section className="py-8 lg:py-24 bg-white text-black border-b border-gray-100">
             <div className="container-mobile px-6 sm:px-12 lg:px-20 mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8">
                     {features.map((feature, idx) => (

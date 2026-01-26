@@ -29,7 +29,7 @@ export default function Home() {
     <div className="min-h-screen bg-white text-black overflow-x-hidden">
 
       {/* 1. HERO SECTION */}
-      <section className="relative h-[100dvh] w-full bg-black overflow-hidden">
+      <section className="relative h-[80dvh] md:h-[100dvh] w-full bg-black overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 z-0 opacity-80">
           <video
@@ -99,7 +99,7 @@ export default function Home() {
       </section>
 
       {/* 2. FEATURED / SIGNATURE HOODIES */}
-      <section id="signature-series" className="pt-20 pb-10 lg:py-24 bg-white overflow-hidden">
+      <section id="signature-series" className="pt-16 pb-8 lg:py-24 bg-white overflow-hidden">
         <div className="container-mobile mx-auto px-4 sm:px-8">
           <div className="flex justify-between items-end mb-8">
             <h2 className="text-2xl lg:text-5xl font-light uppercase tracking-tighter leading-tight">
@@ -110,7 +110,7 @@ export default function Home() {
             </PremiumLink>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 sm:gap-x-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6 sm:gap-x-8">
             {featuredHoodies.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
