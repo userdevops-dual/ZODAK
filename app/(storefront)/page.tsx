@@ -52,11 +52,11 @@ export default function Home() {
               Crafted for the cold. Designed for presence.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 justify-center pt-8">
-              <Button asChild className="bg-white text-black hover:bg-neutral-200 rounded-none h-10 md:h-14 px-4 md:px-8 uppercase tracking-widest text-[10px] sm:text-sm font-black">
+            <div className="flex flex-col items-center sm:flex-row gap-3 justify-center pt-8">
+              <Button asChild className="bg-white text-black hover:bg-neutral-200 rounded-none h-10 md:h-14 px-4 md:px-8 uppercase tracking-widest text-[10px] sm:text-sm font-black w-48 sm:w-auto">
                 <Link href="#signature-series">Explore Signature</Link>
               </Button>
-              <Button asChild variant="outline" className="border-white text-white hover:bg-white hover:text-black rounded-none h-10 md:h-14 px-4 md:px-8 uppercase tracking-widest text-[10px] sm:text-sm font-black">
+              <Button asChild variant="outline" className="border-white text-white hover:bg-white hover:text-black rounded-none h-10 md:h-14 px-4 md:px-8 uppercase tracking-widest text-[10px] sm:text-sm font-black w-48 sm:w-auto">
                 <Link href="/shop">View Collection</Link>
               </Button>
             </div>
