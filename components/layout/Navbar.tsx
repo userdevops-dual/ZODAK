@@ -45,7 +45,11 @@ export function Navbar() {
                 <div className="md:hidden">
                     <Sheet>
                         <SheetTrigger asChild>
-                            <Button variant="ghost" size="icon" className="hover:bg-transparent touch-target">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="bg-white text-black hover:bg-neutral-50 shadow-sm border border-neutral-100 rounded-lg w-10 h-10 flex items-center justify-center touch-target"
+                            >
                                 <Menu className="w-5 h-5" />
                             </Button>
                         </SheetTrigger>
@@ -122,7 +126,7 @@ export function Navbar() {
                                 exit={{ opacity: 0, y: -20 }}
                                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                             >
-                                <Link href="/" className="text-xl md:text-2xl font-bold tracking-[0.3em]">
+                                <Link href="/" className="text-lg md:text-2xl font-bold tracking-[0.3em]">
                                     ZODAK
                                 </Link>
                             </motion.div>

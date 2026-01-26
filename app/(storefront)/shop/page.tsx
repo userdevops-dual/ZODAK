@@ -94,25 +94,25 @@ export default function ShopPage() {
             {/* Header Bar */}
             <div className="sticky top-14 sm:top-16 lg:top-0 z-40 bg-white border-b border-neutral-200">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Navigation Buttons */}
-                    <div className="flex items-center gap-4 pt-4 -mb-2">
+                    {/* Navigation Buttons - Compact */}
+                    <div className="flex items-center gap-3 pt-4 -mb-1">
                         <Button
                             variant="ghost"
                             size="sm"
                             onClick={() => router.back()}
-                            className="text-[10px] uppercase tracking-widest h-8 px-2 hover:bg-neutral-100 flex items-center gap-1"
+                            className="text-[9px] uppercase tracking-widest h-7 px-1.5 hover:bg-neutral-100 flex items-center gap-1"
                         >
-                            <ChevronLeft className="w-3 h-3" />
+                            <ChevronLeft className="w-2.5 h-2.5" />
                             Back
                         </Button>
                         <Button
                             asChild
                             variant="ghost"
                             size="sm"
-                            className="text-[10px] uppercase tracking-widest h-8 px-2 hover:bg-neutral-100 flex items-center gap-1"
+                            className="text-[9px] uppercase tracking-widest h-7 px-1.5 hover:bg-neutral-100 flex items-center gap-1 border-l border-neutral-100 pl-3 rounded-none"
                         >
                             <Link href="/">
-                                <Home className="w-3 h-3" />
+                                <Home className="w-2.5 h-2.5" />
                                 Home
                             </Link>
                         </Button>

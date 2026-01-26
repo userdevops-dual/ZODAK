@@ -50,26 +50,26 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
         <>
             <div className="min-h-screen bg-white pt-16">
                 {/* Product Section */}
-                <div className="container mx-auto px-4 py-6">
-                    {/* Navigation Buttons */}
-                    <div className="flex items-center gap-4 mb-6">
+                <div className="container mx-auto px-4 py-4">
+                    {/* Navigation Buttons - Smaller & Professional */}
+                    <div className="flex items-center gap-3 mb-4">
                         <Button
                             variant="ghost"
                             size="sm"
                             onClick={() => router.back()}
-                            className="text-[10px] uppercase tracking-widest h-8 px-2 hover:bg-neutral-100 flex items-center gap-1"
+                            className="text-[9px] uppercase tracking-widest h-7 px-1.5 hover:bg-neutral-100 flex items-center gap-1"
                         >
-                            <ChevronLeft className="w-3 h-3" />
-                            Back to collection
+                            <ChevronLeft className="w-2.5 h-2.5" />
+                            Back
                         </Button>
                         <Button
                             asChild
                             variant="ghost"
                             size="sm"
-                            className="text-[10px] uppercase tracking-widest h-8 px-2 hover:bg-neutral-100 flex items-center gap-1"
+                            className="text-[9px] uppercase tracking-widest h-7 px-1.5 hover:bg-neutral-100 flex items-center gap-1 border-l border-neutral-100 pl-3 rounded-none"
                         >
                             <Link href="/">
-                                <Home className="w-3 h-3" />
+                                <Home className="w-2.5 h-2.5" />
                                 Home
                             </Link>
                         </Button>
@@ -153,59 +153,59 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                         </div>
 
                         {/* Details */}
-                        <div className="lg:col-span-6 lg:pl-10">
-                            {/* Title & Price - Optimized for Fold */}
-                            <div className="mb-6 lg:mb-8">
-                                <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-neutral-400 mb-2">{product.category}</p>
-                                <h1 className="text-2xl lg:text-4xl font-bold uppercase tracking-tight mb-2 leading-none">{product.name}</h1>
-                                <div className="flex items-baseline gap-3">
-                                    <p className="text-xl lg:text-2xl font-black">${product.price.toFixed(2)}</p>
-                                    {product.price > 100 && <span className="text-[10px] text-green-600 font-bold uppercase tracking-widest bg-green-50 px-2 py-1">Premium Quality</span>}
+                        <div className="lg:col-span-6 lg:pl-10 mt-6 lg:mt-0">
+                            {/* Title & Price - Compact Shopify Style */}
+                            <div className="mb-4 lg:mb-6">
+                                <p className="text-[9px] uppercase tracking-[0.2em] text-neutral-400 mb-1">{product.category}</p>
+                                <h1 className="text-xl lg:text-3xl font-bold uppercase tracking-tight mb-1 leading-tight">{product.name}</h1>
+                                <div className="flex items-baseline gap-2">
+                                    <p className="text-lg lg:text-2xl font-black text-neutral-900">${product.price.toFixed(0)}</p>
+                                    {product.price > 100 && <span className="text-[8px] text-green-600 font-bold uppercase tracking-widest bg-green-50 px-1.5 py-0.5">Verified Premium</span>}
                                 </div>
                             </div>
 
-                            {/* Description - Compact on mobile */}
-                            <p className="text-sm lg:text-base text-neutral-500 mb-8 leading-relaxed max-w-xl">{product.description}</p>
+                            {/* Description - Compact */}
+                            <p className="text-[13px] lg:text-sm text-neutral-500 mb-6 leading-relaxed max-w-xl">{product.description}</p>
 
-                            {/* Color */}
+                            {/* Color - Smaller Circles */}
                             <div className="mb-4">
-                                <p className="text-[10px] uppercase tracking-widest text-neutral-500 mb-2">Color: <span className="text-neutral-700">{selectedColor}</span></p>
+                                <p className="text-[9px] uppercase tracking-widest font-bold text-neutral-400 mb-2">Color: <span className="text-black">{selectedColor}</span></p>
                                 <div className="flex gap-2">
                                     {product.colors.map((color) => {
                                         const bg = color.toLowerCase().includes('black') ? '#000' : color.toLowerCase().includes('grey') || color.toLowerCase().includes('charcoal') ? '#555' : color.toLowerCase().includes('navy') ? '#1a1a40' : color.toLowerCase().includes('white') || color.toLowerCase().includes('ivory') ? '#f5f5f5' : color.toLowerCase().includes('brown') ? '#8B4513' : color.toLowerCase().includes('blue') ? '#4169E1' : '#ddd';
                                         return (
-                                            <button key={color} onClick={() => setSelectedColor(color)} className={cn("w-8 h-8 rounded-full border-2 transition-all", selectedColor === color ? "border-black scale-110" : "border-transparent")} style={{ backgroundColor: bg }} />
+                                            <button key={color} onClick={() => setSelectedColor(color)} className={cn("w-6 h-6 rounded-full border transition-all", selectedColor === color ? "ring-2 ring-black ring-offset-2 scale-110" : "border-neutral-200")} style={{ backgroundColor: bg }} />
                                         );
                                     })}
                                 </div>
                             </div>
 
-                            {/* Size */}
+                            {/* Size - Compact Grid */}
                             <div className="mb-4">
                                 <div className="flex items-center justify-between mb-2">
-                                    <p className="text-[10px] uppercase tracking-widest text-neutral-500">Select Size</p>
-                                    <button className="text-[10px] underline text-neutral-400">Size Guide</button>
+                                    <p className="text-[9px] uppercase tracking-widest font-bold text-neutral-400">Select Size</p>
+                                    <button className="text-[9px] underline text-neutral-400 font-bold uppercase">Guide</button>
                                 </div>
-                                <div className="flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-1.5">
                                     {product.sizes.map((size) => (
-                                        <button key={size} onClick={() => { setSelectedSize(size); setSizeError(false); }} className={cn("min-w-[44px] h-10 px-3 border text-xs transition-all", selectedSize === size ? "border-black bg-black text-white" : "border-neutral-200 hover:border-black")}>
+                                        <button key={size} onClick={() => { setSelectedSize(size); setSizeError(false); }} className={cn("min-w-[40px] h-9 px-2 border text-[10px] font-black transition-all", selectedSize === size ? "border-black bg-black text-white" : "border-neutral-100 hover:border-black text-neutral-600 shadow-sm")}>
                                             {size}
                                         </button>
                                     ))}
                                 </div>
-                                {sizeError && <p className="text-red-500 text-xs mt-1">Please select a size</p>}
+                                {sizeError && <p className="text-red-600 text-[9px] font-bold uppercase mt-1 animate-pulse tracking-wide">Please choose a size</p>}
                             </div>
 
-                            {/* Quantity */}
-                            <div className="mb-5">
-                                <p className="text-[10px] uppercase tracking-widest text-neutral-500 mb-2">Quantity</p>
-                                <div className="inline-flex items-center border border-neutral-200">
-                                    <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-9 h-9 flex items-center justify-center hover:bg-neutral-50">
-                                        <Minus className="w-3 h-3" />
+                            {/* Quantity - Minimal */}
+                            <div className="mb-6">
+                                <p className="text-[9px] uppercase tracking-widest font-bold text-neutral-400 mb-2">Qty</p>
+                                <div className="inline-flex items-center border border-neutral-100 bg-neutral-50 rounded-sm">
+                                    <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-8 h-8 flex items-center justify-center hover:bg-white text-neutral-400">
+                                        <Minus className="w-2.5 h-2.5" />
                                     </button>
-                                    <span className="w-10 h-9 flex items-center justify-center text-sm border-x border-neutral-200">{quantity}</span>
-                                    <button onClick={() => setQuantity(Math.min(product.stockLimit, quantity + 1))} className="w-9 h-9 flex items-center justify-center hover:bg-neutral-50">
-                                        <Plus className="w-3 h-3" />
+                                    <span className="w-8 h-8 flex items-center justify-center text-[11px] font-bold border-x border-neutral-100 text-black">{quantity}</span>
+                                    <button onClick={() => setQuantity(Math.min(product.stockLimit, quantity + 1))} className="w-8 h-8 flex items-center justify-center hover:bg-white text-neutral-400">
+                                        <Plus className="w-2.5 h-2.5" />
                                     </button>
                                 </div>
                             </div>
@@ -259,34 +259,34 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                 </div>
             </div>
 
-            {/* Mobile Sticky CTA */}
-            <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-xl border-t border-neutral-100 p-4 safe-area-bottom z-50">
-                <div className="flex gap-3">
-                    <div className="w-1/3 border border-neutral-100 flex items-center justify-between">
-                        <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-full h-12 flex items-center justify-center">
-                            <Minus className="w-4 h-4" />
+            {/* Mobile Sticky CTA - Forced Priority */}
+            <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-2xl border-t border-neutral-100 p-3 safe-area-bottom z-[70] shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
+                <div className="flex gap-2">
+                    <div className="w-[30%] border border-neutral-100 flex items-center justify-between rounded-sm">
+                        <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-full h-11 flex items-center justify-center">
+                            <Minus className="w-3.5 h-3.5" />
                         </button>
-                        <span className="text-sm font-bold w-full text-center">{quantity}</span>
-                        <button onClick={() => setQuantity(Math.min(product.stockLimit, quantity + 1))} className="w-full h-12 flex items-center justify-center">
-                            <Plus className="w-4 h-4" />
+                        <span className="text-[11px] font-black w-full text-center">{quantity}</span>
+                        <button onClick={() => setQuantity(Math.min(product.stockLimit, quantity + 1))} className="w-full h-11 flex items-center justify-center">
+                            <Plus className="w-3.5 h-3.5" />
                         </button>
                     </div>
                     <button
                         onClick={handleAddToBag}
                         disabled={isAdding || isAdded}
                         className={cn(
-                            "flex-1 h-12 text-xs font-black uppercase tracking-[0.2em] shadow-2xl transition-all duration-300 active:scale-95",
-                            sizeError ? "bg-red-50 text-red-600 border border-red-200" :
+                            "flex-1 h-11 text-[10px] font-black uppercase tracking-[0.2em] shadow-xl transition-all duration-300 active:scale-95 rounded-sm",
+                            sizeError ? "bg-red-50 text-red-600" :
                                 isAdded ? "bg-green-600 text-white" : "bg-black text-white"
                         )}
                     >
-                        {isAdding ? <Loader2 className="w-5 h-5 animate-spin mx-auto" /> :
-                            isAdded ? "Added to Bag ✓" :
-                                sizeError ? "Select Size First" :
+                        {isAdding ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> :
+                            isAdded ? "Added ✓" :
+                                sizeError ? "Choice Required" :
                                     `Add — $${(product.price * quantity).toFixed(0)}`}
                     </button>
                 </div>
-                {sizeError && <p className="text-red-600 text-[10px] font-bold uppercase tracking-widest text-center mt-2 animate-bounce">Please choose a size</p>}
+                {sizeError && <p className="text-red-500 text-[8px] font-black uppercase tracking-widest text-center mt-1.5 animate-bounce">Selection pending...</p>}
             </div>
         </>
     );

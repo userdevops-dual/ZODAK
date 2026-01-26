@@ -56,13 +56,13 @@ export function ProductCard({ product, onQuickView, theme = "light" }: ProductCa
                         </span>
                     </div>
 
-                    {/* Mobile Quick Add Button */}
+                    {/* Mobile Quick Add Button - Smaller & Refined */}
                     <button
                         onClick={handleAddToCart}
-                        className="absolute bottom-2 right-2 z-20 w-10 h-10 bg-black text-white rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform md:hidden touch-target"
+                        className="absolute bottom-2 right-2 z-20 w-8 h-8 bg-white/95 backdrop-blur-sm text-black rounded-full flex items-center justify-center shadow-md active:scale-90 transition-transform md:hidden touch-target border border-neutral-100"
                         aria-label="Add to cart"
                     >
-                        <Plus className="w-5 h-5" />
+                        <Plus className="w-4 h-4" />
                     </button>
 
                     {/* Desktop Hover Add Button */}
