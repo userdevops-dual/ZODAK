@@ -148,8 +148,9 @@
     span,
     div,
     button {
-      font-size: 14px !important;
-      line-height: 1.5 !important;
+      font-size: 11px !important;
+      line-height: normal !important;
+      letter-spacing: 0.02em !important;
     }
 
     /* High contrast for white-on-dark text on mobile */

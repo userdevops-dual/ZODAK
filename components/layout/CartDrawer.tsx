@@ -108,9 +108,9 @@ export function CartDrawer() {
                         </div>
                         <div className="flex flex-col gap-3">
                             <SheetClose asChild>
-                                <Button asChild className="w-full h-14 bg-black text-white hover:bg-neutral-800 rounded-none text-[10px] font-black uppercase tracking-[0.3em] shadow-xl">
+                                <Button asChild className="w-full h-11 md:h-14 bg-black text-white hover:bg-neutral-800 rounded-none text-[10px] font-black uppercase tracking-[0.2em] shadow-xl">
                                     <Link href="/checkout" className="flex items-center justify-center gap-2">
-                                        Checkout <ArrowRight className="w-3.5 h-3.5" />
+                                        Checkout <ArrowRight className="w-3 h-3" />
                                     </Link>
                                 </Button>
                             </SheetClose>

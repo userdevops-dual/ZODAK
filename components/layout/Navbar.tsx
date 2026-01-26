@@ -172,7 +172,9 @@ export function Navbar() {
                         </Link>
                     )}
 
-                    <CartDrawer />
+                    <div className="hidden md:block">
+                        <CartDrawer />
+                    </div>
                 </div>
             </div>
         </header>
