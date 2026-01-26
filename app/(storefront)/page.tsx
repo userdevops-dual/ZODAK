@@ -14,11 +14,11 @@ import { motion } from "framer-motion";
 
 // Dot particles configuration for "Volume One" button animation
 const dots = [
-  { top: "-15%", left: "10%", delay: "0s", size: "6px" },
-  { top: "25%", left: "-20%", delay: "0.5s", size: "4px" },
-  { top: "75%", left: "95%", delay: "1.2s", size: "7px" },
-  { top: "115%", left: "45%", delay: "0.8s", size: "5px" },
-  { top: "35%", left: "105%", delay: "1.5s", size: "6px" },
+  { top: "-10%", left: "5%", delay: "0s", size: "5px" },   // Top-left (V)
+  { top: "85%", left: "30%", delay: "0.5s", size: "4px" }, // Bottom-mid (u)
+  { top: "-15%", left: "60%", delay: "1.2s", size: "6px" },// Top-mid (e)
+  { top: "70%", left: "95%", delay: "0.8s", size: "5px" }, // Bottom-right (e)
+  { top: "20%", left: "102%", delay: "1.5s", size: "4px" },// Far right (side)
 ];
 
 export default function Home() {
@@ -79,7 +79,7 @@ export default function Home() {
                 {dots.map((dot, i) => (
                   <div
                     key={i}
-                    className="absolute bg-black rounded-full hidden group-hover:block star-animation pointer-events-none"
+                    className="absolute bg-black rounded-full star-animation pointer-events-none"
                     style={{
                       top: dot.top,
                       left: dot.left,
