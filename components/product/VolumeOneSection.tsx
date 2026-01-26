@@ -55,8 +55,8 @@ export function VolumeOneSection() {
             <div className="relative z-10 flex flex-col lg:flex-row pt-16 pb-8 px-4 sm:px-12 lg:px-16 gap-4 lg:gap-16 items-center">
 
                 {/* Left Column: Sticky Title (Desktop Only) */}
-                <div className="w-full lg:flex-1 relative text-center lg:text-left">
-                    <div className="lg:sticky lg:top-0 h-auto lg:h-[100dvh] w-full flex flex-col justify-center overflow-hidden py-4 lg:py-0">
+                <div className="w-full lg:flex-1 relative text-left">
+                    <div className="lg:sticky lg:top-0 h-auto lg:h-[100dvh] w-full flex flex-col justify-start lg:justify-center overflow-hidden py-4 lg:py-0">
                         {/* Archive Release Label */}
                         <span className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-white/50 font-bold mb-2 block">
                             Archive Release
@@ -64,7 +64,7 @@ export function VolumeOneSection() {
 
                         {/* Volume One Title - Smaller on Mobile */}
                         <h2
-                            className="text-3xl sm:text-7xl lg:text-8xl xl:text-9xl font-black uppercase tracking-[0.2em] text-white leading-[0.9]"
+                            className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-black uppercase tracking-[0.2em] text-white leading-[0.9]"
                         >
                             Volume<br />
                             <motion.span
