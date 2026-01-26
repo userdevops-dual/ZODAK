@@ -12,6 +12,15 @@ import { products } from "@/lib/products";
 import { ProductCard } from "@/components/product/ProductCard";
 import { motion } from "framer-motion";
 
+// Dot particles configuration for "Volume One" button animation
+const dots = [
+  { top: "-15%", left: "10%", delay: "0s", size: "6px" },
+  { top: "25%", left: "-20%", delay: "0.5s", size: "4px" },
+  { top: "75%", left: "95%", delay: "1.2s", size: "7px" },
+  { top: "115%", left: "45%", delay: "0.8s", size: "5px" },
+  { top: "35%", left: "105%", delay: "1.5s", size: "6px" },
+];
+
 export default function Home() {
   // Select first 4 hoodies for the "Featured" section
   const featuredHoodies = products.filter(p => p.category.toLowerCase() === "hoodies").slice(0, 4);
@@ -53,7 +62,7 @@ export default function Home() {
 
             <div className="flex flex-col items-center sm:flex-row gap-3 justify-center pt-8">
               <Button
-                className="bg-white text-black hover:bg-neutral-200 rounded-none h-10 md:h-14 px-4 md:px-8 uppercase tracking-widest text-[10px] sm:text-sm font-black w-48 sm:w-auto"
+                className="bg-white text-black hover:bg-neutral-200 rounded-none h-10 md:h-14 px-4 md:px-8 uppercase tracking-widest text-[10px] sm:text-sm font-black w-48 sm:w-auto group relative overflow-visible"
                 onClick={() => {
                   const section = document.getElementById('volume-one');
                   if (section) {
@@ -65,7 +74,21 @@ export default function Home() {
                   }
                 }}
               >
-                Volume One
+                <span className="relative z-10">Volume One</span>
+                {/* Black Dot Animation on Hover */}
+                {dots.map((dot, i) => (
+                  <div
+                    key={i}
+                    className="absolute bg-black rounded-full hidden group-hover:block star-animation pointer-events-none"
+                    style={{
+                      top: dot.top,
+                      left: dot.left,
+                      width: dot.size,
+                      height: dot.size,
+                      animationDelay: dot.delay
+                    }}
+                  />
+                ))}
               </Button>
               <Button asChild variant="outline" className="border-white text-white hover:bg-white hover:text-black rounded-none h-10 md:h-14 px-4 md:px-8 uppercase tracking-widest text-[10px] sm:text-sm font-black w-48 sm:w-auto">
                 <Link href="/shop">View Collection</Link>
