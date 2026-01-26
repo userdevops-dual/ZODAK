@@ -88,7 +88,7 @@ export function VolumeOneSection() {
                                     ease: "easeInOut",
                                     times: [0, 0.1, 0.2, 0.4, 0.5, 0.8, 1]
                                 }}
-                                className="inline-block !text-7xl !sm:text-7xl !lg:text-8xl !xl:text-9xl !font-black !leading-[0.8]"
+                                className="inline-block !text-8xl sm:!text-7xl lg:!text-8xl xl:!text-9xl !font-black !leading-[0.8]"
                             >
                                 One
                             </motion.span>
