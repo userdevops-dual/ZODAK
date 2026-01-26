@@ -127,8 +127,7 @@ export function Navbar() {
                             >
                                 <Link
                                     href="/"
-                                    className="text-lg md:text-2xl font-bold tracking-[0.3em] text-transparent"
-                                    style={{ WebkitTextStroke: "0.5px currentColor" }}
+                                    className="text-lg md:text-2xl font-black tracking-[0.3em]"
                                 >
                                     ZODAK
                                 </Link>
