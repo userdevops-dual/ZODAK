@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 
 export function FabricFitSection() {
     return (
-        <section className="py-24 bg-neutral-50 border-b border-gray-100">
+        <section className="py-12 lg:py-24 bg-neutral-50 border-b border-gray-100">
             <div className="container-mobile px-6 sm:px-12 lg:px-20 mx-auto">
-                <div className="flex flex-col lg:flex-row gap-16 items-center">
+                <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
 
                     {/* Text Content */}
                     <motion.div
@@ -15,18 +15,18 @@ export function FabricFitSection() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="w-full lg:w-1/2 space-y-8"
+                        className="w-full lg:w-1/2 space-y-6"
                     >
-                        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light uppercase tracking-tighter text-black">
+                        <h2 className="text-2xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black">
                             Obsessive<br />
-                            <span className="font-bold">Detailing</span>
+                            <span className="text-neutral-400">Detailing</span>
                         </h2>
 
-                        <div className="space-y-6">
+                        <div className="space-y-5">
                             <div>
-                                <h3 className="text-sm font-bold uppercase tracking-widest mb-2">The Fabric</h3>
-                                <p className="text-neutral-600 font-light leading-relaxed">
-                                    Our proprietary 450GSM cotton fleece is brushed on the inside for softness and tightly woven on the outside for structure (and presence).
+                                <h3 className="text-[10px] font-black uppercase tracking-widest mb-1 text-black">The Fabric</h3>
+                                <p className="text-[12px] text-neutral-500 font-medium leading-relaxed">
+                                    Our proprietary 450GSM cotton fleece is brushed on the inside for softness and tightly woven on the outside for structure.
                                 </p>
                             </div>
 

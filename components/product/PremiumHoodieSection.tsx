@@ -78,7 +78,7 @@ export function PremiumHoodieSection() {
 
   return (
     <section
-      className="group/slider relative h-[100dvh] w-full bg-white flex flex-col justify-center overflow-hidden border-t border-gray-50 py-6 sm:py-8"
+      className="group/slider relative min-h-[600px] lg:h-[100dvh] w-full bg-white flex flex-col justify-center overflow-hidden border-t border-neutral-50 py-10 sm:py-12"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -91,13 +91,13 @@ export function PremiumHoodieSection() {
       </div>
 
       <div className="relative z-10 w-full">
-        <div className="container-mobile mx-auto px-4 sm:px-12 lg:px-20 mb-6 sm:mb-8 flex justify-between items-end">
-          <div>
-            <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] text-neutral-400 block mb-2">
-              The Collection
+        <div className="container-mobile mx-auto px-4 sm:px-12 lg:px-20 mb-8 sm:mb-12 text-center lg:text-left">
+          <div className="flex flex-col items-center lg:items-start">
+            <span className="text-[9px] uppercase tracking-[0.4em] text-neutral-400 block mb-2 font-bold">
+              Premium Drops
             </span>
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-tight text-black leading-none">
-              {showRecent ? "Recently Viewed" : "Premium Hoodies"}
+            <h3 className="text-xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tighter text-black leading-none max-w-[200px] sm:max-w-none">
+              {showRecent ? "Recently Viewed" : "Exclusive Hoodies"}
             </h3>
           </div>
           <div className="hidden sm:flex items-center gap-4">

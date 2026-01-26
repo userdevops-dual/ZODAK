@@ -42,10 +42,10 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.2 }}
             className="space-y-6"
           >
-            <h1 className="text-6xl sm:text-8xl md:text-9xl font-black uppercase tracking-tighter text-white mix-blend-difference">
+            <h1 className="text-4xl sm:text-8xl md:text-9xl font-black uppercase tracking-tighter text-white mix-blend-difference">
               ZODAK
             </h1>
-            <p className="text-sm sm:text-lg md:text-xl font-light uppercase tracking-[0.3em] text-white/90 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-[12px] sm:text-lg md:text-xl font-light uppercase tracking-[0.2em] text-white/90 max-w-2xl mx-auto leading-relaxed px-6">
               Crafted for the cold. Designed for presence.
             </p>
 
