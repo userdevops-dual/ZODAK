@@ -62,9 +62,9 @@ export function VolumeOneSection() {
                             Archive Release
                         </span>
 
-                        {/* Volume One Title - Smaller on Mobile */}
+                        {/* Volume One Title - Responsive Fluid Typography */}
                         <h2
-                            className="text-7xl sm:text-8xl lg:text-9xl font-black uppercase tracking-[0.2em] text-white leading-[0.8]"
+                            className="text-[clamp(4.5rem,10vw,9rem)] font-black uppercase tracking-[0.2em] text-white leading-[0.8]"
                         >
                             Volume<br />
                             <motion.span
@@ -88,7 +88,7 @@ export function VolumeOneSection() {
                                     ease: "easeInOut",
                                     times: [0, 0.1, 0.2, 0.4, 0.5, 0.8, 1]
                                 }}
-                                className="inline-block !text-8xl sm:!text-8xl lg:!text-9xl !font-black !leading-[0.8]"
+                                className="inline-block xl:text-left !text-[clamp(6rem,15vw,11rem)] !font-black !leading-[0.8]"
                             >
                                 One
                             </motion.span>
