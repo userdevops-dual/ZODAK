@@ -41,10 +41,9 @@ export function Loader() {
                     {["Z", "O", "D", "A", "K"].map((letter, i) => (
                         <span
                             key={i}
-                            className="text-6xl md:text-9xl font-black tracking-tighter text-transparent animate-fade-in-up"
+                            className="text-6xl md:text-9xl font-black tracking-tighter text-black opacity-0 animate-fade-in-up"
                             style={{
                                 animationDelay: `${i * 150}ms`,
-                                WebkitTextStroke: "0.5px black",
                                 animationFillMode: "forwards"
                             }}
                         >
