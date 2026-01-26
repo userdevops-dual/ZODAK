@@ -99,7 +99,7 @@ export default function Home() {
       </section>
 
       {/* 2. FEATURED / SIGNATURE HOODIES */}
-      <section id="signature-series" className="pt-24 pb-12 lg:py-24 bg-white overflow-hidden">
+      <section id="signature-series" className="pt-20 pb-10 lg:py-24 bg-white overflow-hidden">
         <div className="container-mobile mx-auto px-4 sm:px-8">
           <div className="flex justify-between items-end mb-8">
             <h2 className="text-2xl lg:text-5xl font-light uppercase tracking-tighter leading-tight">

@@ -52,7 +52,7 @@ export function VolumeOneSection() {
             <BloodSplatter />
 
             {/* Main Content Container */}
-            <div className="relative z-10 flex flex-col lg:flex-row pt-28 pb-10 px-4 sm:px-12 lg:px-16 gap-4 lg:gap-16 items-center">
+            <div className="relative z-10 flex flex-col lg:flex-row pt-20 pb-8 px-4 sm:px-12 lg:px-16 gap-4 lg:gap-16 items-center">
 
                 {/* Left Column: Sticky Title (Desktop Only) */}
                 <div className="w-full lg:flex-1 relative text-center lg:text-left">
