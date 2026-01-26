@@ -62,7 +62,10 @@ export function VolumeOneSection() {
                         </span>
 
                         {/* Volume One Title - Smaller on Mobile */}
-                        <h2 className="text-3xl sm:text-7xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tighter text-white leading-[0.9]">
+                        <h2
+                            className="text-3xl sm:text-7xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tighter text-transparent leading-[0.9]"
+                            style={{ WebkitTextStroke: "0.8px white" }}
+                        >
                             Volume<br />
                             <motion.span
                                 animate={{

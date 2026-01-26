@@ -125,7 +125,11 @@ export function Navbar() {
                                 exit={{ opacity: 0, y: -20 }}
                                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                             >
-                                <Link href="/" className="text-lg md:text-2xl font-bold tracking-[0.3em]">
+                                <Link
+                                    href="/"
+                                    className="text-lg md:text-2xl font-bold tracking-[0.3em] text-transparent"
+                                    style={{ WebkitTextStroke: "0.5px currentColor" }}
+                                >
                                     ZODAK
                                 </Link>
                             </motion.div>
