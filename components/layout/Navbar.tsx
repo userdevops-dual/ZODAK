@@ -8,7 +8,7 @@ import { useCart } from "@/lib/CartContext";
 import { useSession, signOut } from "next-auth/react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { SmartSearch } from "@/components/search/SmartSearch";
 import { PremiumLink } from "@/components/ui/PremiumLink";
 import { motion, AnimatePresence } from "framer-motion";
@@ -50,6 +50,9 @@ export function Navbar() {
                             </Button>
                         </SheetTrigger>
                         <SheetContent side="left" className="w-[300px] sm:w-[350px] p-0 bg-white border-r">
+                            <SheetHeader className="sr-only">
+                                <SheetTitle>Navigation Menu</SheetTitle>
+                            </SheetHeader>
                             <div className="flex flex-col h-full text-black">
                                 <div className="p-6 border-b border-gray-100">
                                     <Link href="/" className="text-2xl font-bold tracking-[0.3em] text-black">ZODAK</Link>
