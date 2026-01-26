@@ -56,7 +56,7 @@ export default function Home() {
             >
               ZODAK
             </h1>
-            <p className="text-[11px] sm:text-lg md:text-xl font-light uppercase tracking-[0.2em] text-white/90 max-w-2xl mx-auto leading-relaxed px-6 -mt-2">
+            <p className="text-xs sm:text-lg md:text-xl font-light uppercase tracking-[0.2em] text-white/90 max-w-2xl mx-auto leading-relaxed px-6 -mt-2">
               Crafted for the cold. Designed for presence.
             </p>
 

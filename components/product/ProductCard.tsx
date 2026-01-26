@@ -59,7 +59,7 @@ export function ProductCard({ product, onQuickView, theme = "light" }: ProductCa
                     {/* Mobile Quick Add Button - Minimalist */}
                     <button
                         onClick={handleAddToCart}
-                        className="absolute bottom-1 right-1 z-20 w-6 h-6 bg-white/95 backdrop-blur-sm text-black rounded-full flex items-center justify-center shadow-sm active:scale-90 transition-transform md:hidden touch-target border border-neutral-100"
+                        className="absolute bottom-1 right-1 z-20 w-5 h-5 bg-white/95 backdrop-blur-sm text-black rounded-full flex items-center justify-center shadow-sm active:scale-90 transition-transform md:hidden touch-target border border-neutral-100"
                         aria-label="Add to cart"
                     >
                         <Plus className="w-3 h-3" />

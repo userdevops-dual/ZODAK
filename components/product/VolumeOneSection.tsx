@@ -58,7 +58,7 @@ export function VolumeOneSection() {
                 <div className="w-full lg:flex-1 relative text-center lg:text-left">
                     <div className="lg:sticky lg:top-0 h-auto lg:h-[100dvh] w-full flex flex-col justify-center overflow-hidden py-4 lg:py-0">
                         {/* Archive Release Label */}
-                        <span className="text-[9px] sm:text-xs uppercase tracking-[0.3em] text-white/50 font-bold mb-2 block">
+                        <span className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-white/50 font-bold mb-2 block">
                             Archive Release
                         </span>
 
