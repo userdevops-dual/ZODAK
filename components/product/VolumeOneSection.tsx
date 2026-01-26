@@ -52,7 +52,7 @@ export function VolumeOneSection() {
             <BloodSplatter />
 
             {/* Main Content Container */}
-            <div className="relative z-10 flex flex-col lg:flex-row pt-14 pb-8 px-4 sm:px-12 lg:px-16 gap-4 lg:gap-16 items-center">
+            <div className="relative z-10 flex flex-col lg:flex-row pt-10 pb-8 px-4 sm:px-12 lg:px-16 gap-4 lg:gap-16 items-center">
 
                 {/* Left Column: Sticky Title (Desktop Only) */}
                 <div className="w-full lg:flex-1 relative text-left">
@@ -64,7 +64,7 @@ export function VolumeOneSection() {
 
                         {/* Volume One Title - Smaller on Mobile */}
                         <h2
-                            className="text-7xl sm:text-7xl lg:text-8xl xl:text-9xl font-black uppercase tracking-[0.2em] text-white leading-[0.8]"
+                            className="text-7xl sm:text-8xl lg:text-9xl font-black uppercase tracking-[0.2em] text-white leading-[0.8]"
                         >
                             Volume<br />
                             <motion.span
@@ -88,7 +88,7 @@ export function VolumeOneSection() {
                                     ease: "easeInOut",
                                     times: [0, 0.1, 0.2, 0.4, 0.5, 0.8, 1]
                                 }}
-                                className="inline-block !text-8xl sm:!text-7xl lg:!text-8xl xl:!text-9xl !font-black !leading-[0.8]"
+                                className="inline-block !text-8xl sm:!text-8xl lg:!text-9xl !font-black !leading-[0.8]"
                             >
                                 One
                             </motion.span>
