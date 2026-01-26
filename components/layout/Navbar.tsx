@@ -119,7 +119,10 @@ export function Navbar() {
                 <div className="flex items-center">
                     <Link
                         href="/"
-                        className="text-lg md:text-2xl font-black tracking-[0.3em]"
+                        className={cn(
+                            "text-lg md:text-2xl font-black tracking-[0.3em]",
+                            (!isScrolled && isHome) && "mix-blend-difference text-white"
+                        )}
                     >
                         ZODAK
                     </Link>
