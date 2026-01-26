@@ -161,7 +161,7 @@ export function SmartSearch() {
                                             onChange={(e) => setQuery(e.target.value)}
                                             onKeyDown={handleKeyDown}
                                             placeholder="Search..."
-                                            className="flex-1 text-lg font-light outline-none bg-transparent placeholder:text-gray-300 tracking-wide"
+                                            className="flex-1 text-lg font-light outline-none bg-transparent text-black placeholder:text-gray-300 tracking-wide"
                                             autoComplete="off"
                                         />
 

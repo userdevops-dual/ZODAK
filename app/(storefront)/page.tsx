@@ -57,14 +57,7 @@ export default function Home() {
                 onClick={() => {
                   const section = document.getElementById('signature-series');
                   if (section) {
-                    const offset = 80; // height of sticky navbar approximately
-                    const elementPosition = section.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-                    window.scrollTo({
-                      top: offsetPosition,
-                      behavior: "smooth"
-                    });
+                    section.scrollIntoView({ behavior: "smooth", block: "start" });
                   }
                 }}
               >
@@ -79,7 +72,7 @@ export default function Home() {
       </section>
 
       {/* 2. FEATURED / SIGNATURE HOODIES */}
-      <section id="signature-series" className="py-12 lg:py-24 bg-white overflow-hidden">
+      <section id="signature-series" className="pt-24 pb-12 lg:py-24 bg-white overflow-hidden">
         <div className="container-mobile mx-auto px-4 sm:px-8">
           <div className="flex justify-between items-end mb-8">
             <h2 className="text-2xl lg:text-5xl font-light uppercase tracking-tighter leading-tight">
