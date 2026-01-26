@@ -29,7 +29,7 @@ export function FinalCtaSection() {
                     <div className="pt-6">
                         <Button
                             asChild
-                            className="bg-white text-black hover:bg-neutral-200 rounded-none h-10 md:h-14 px-8 md:px-10 text-[10px] md:text-sm uppercase tracking-[0.2em] font-black transition-all hover:scale-105"
+                            className="bg-white text-black hover:bg-neutral-200 rounded-none h-10 md:h-14 px-4 md:px-10 text-[10px] md:text-sm uppercase tracking-[0.2em] font-black transition-all hover:scale-105"
                         >
                             <Link href="/shop">Shop Zodak Hoodies</Link>
                         </Button>
