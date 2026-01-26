@@ -57,7 +57,11 @@ export default function Home() {
                 onClick={() => {
                   const section = document.getElementById('volume-one');
                   if (section) {
-                    section.scrollIntoView({ behavior: "smooth", block: "start" });
+                    const elementPosition = section.getBoundingClientRect().top + window.pageYOffset;
+                    window.scrollTo({
+                      top: elementPosition,
+                      behavior: "smooth"
+                    });
                   }
                 }}
               >
