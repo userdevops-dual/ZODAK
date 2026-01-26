@@ -44,7 +44,7 @@ export default function Home() {
           >
             <h1
               className="text-7xl sm:text-8xl md:text-9xl font-black uppercase tracking-tighter text-transparent mix-blend-difference"
-              style={{ WebkitTextStroke: "1.5px white" }}
+              style={{ WebkitTextStroke: "0.5px white" }}
             >
               ZODAK
             </h1>
