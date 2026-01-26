@@ -37,19 +37,23 @@ export function Loader() {
             )}
         >
             <div className="flex flex-col items-center gap-6">
-                <div className="flex items-center gap-[2px] md:gap-[4px] overflow-hidden">
+                <div className="flex items-center gap-[4px] md:gap-[8px] overflow-hidden">
                     {["Z", "O", "D", "A", "K"].map((letter, i) => (
                         <span
                             key={i}
-                            className="text-4xl md:text-6xl font-bold tracking-[0.1em] opacity-0 animate-fade-in-up"
-                            style={{ animationDelay: `${i * 150}ms` }}
+                            className="text-6xl md:text-9xl font-black tracking-tighter text-transparent animate-fade-in-up"
+                            style={{
+                                animationDelay: `${i * 150}ms`,
+                                WebkitTextStroke: "0.5px black",
+                                animationFillMode: "forwards"
+                            }}
                         >
                             {letter}
                         </span>
                     ))}
                 </div>
 
-                <div className="w-16 md:w-24 h-[1px] bg-black/80 opacity-0 animate-grow-width" style={{ animationDelay: "800ms" }} />
+                <div className="w-24 md:w-48 h-[1px] bg-black/80 opacity-0 animate-grow-width" style={{ animationDelay: "800ms" }} />
             </div>
         </div>
     );
