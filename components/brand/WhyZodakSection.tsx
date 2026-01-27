@@ -28,9 +28,9 @@ const features = [
 
 export function WhyZodakSection() {
     return (
-        <section className="py-8 lg:py-24 bg-white text-black border-b border-gray-100">
+        <section className="py-24 bg-black text-white border-b border-neutral-900">
             <div className="container-mobile px-6 sm:px-12 lg:px-20 mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
                     {features.map((feature, idx) => (
                         <motion.div
                             key={idx}
@@ -38,16 +38,16 @@ export function WhyZodakSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1, duration: 0.6 }}
-                            className="flex flex-col items-center lg:items-start space-y-3 text-center lg:text-left"
+                            className="flex flex-col items-start space-y-4"
                         >
-                            <div className="p-2.5 bg-gray-50 rounded-full">
-                                <feature.icon className="w-5 h-5 text-black" strokeWidth={1.5} />
+                            <div className="p-3 bg-neutral-900 rounded-full">
+                                <feature.icon className="w-6 h-6 text-white" strokeWidth={1.5} />
                             </div>
                             <div>
-                                <h3 className="text-sm font-black uppercase tracking-widest mb-1.5">
+                                <h3 className="text-lg font-bold uppercase tracking-wider mb-2">
                                     {feature.title}
                                 </h3>
-                                <p className="text-[11px] text-neutral-400 font-bold uppercase tracking-tight leading-normal max-w-[180px]">
+                                <p className="text-sm text-neutral-500 font-light leading-relaxed max-w-[200px]">
                                     {feature.description}
                                 </p>
                             </div>

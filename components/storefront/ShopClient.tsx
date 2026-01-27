@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { ProductCard } from "@/components/product/ProductCard";
 import { Filter, ChevronDown, X, Check, SlidersHorizontal } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Product } from "@/lib/products";
 
 type SortOption = "relevant" | "newest" | "price-low" | "price-high" | "name-az" | "name-za";
 
@@ -24,15 +25,6 @@ const categories = [
     { id: "heavyweight", label: "Heavyweight" },
 ];
 
-interface Product {
-    id: string;
-    name: string;
-    price: number;
-    category: string;
-    images: string[];
-    description: string;
-}
-
 export function ShopClient({ products }: { products: Product[] }) {
     const [sortBy, setSortBy] = useState<SortOption>("relevant");
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -49,6 +41,13 @@ export function ShopClient({ products }: { products: Product[] }) {
 
     const filteredProducts = useMemo(() => {
         let result = [...products];
+
+        if (selectedCategories.length > 0) {
+            result = result.filter(product => {
+                const searchString = `${product.name} ${product.description} ${product.category}`.toLowerCase();
+                return selectedCategories.some(category => searchString.includes(category.toLowerCase()));
+            });
+        }
 
         switch (sortBy) {
             case "newest":
@@ -81,8 +80,8 @@ export function ShopClient({ products }: { products: Product[] }) {
     const activeFilterCount = selectedCategories.length;
 
     return (
-        <div className="pt-16 sm:pt-20 lg:pt-24 min-h-screen bg-white">
-            <div className="sticky top-14 sm:top-16 lg:top-0 z-40 bg-white border-b border-neutral-200">
+        <div className="pt-16 sm:pt-20 lg:pt-24 min-h-screen bg-black text-white">
+            <div className="sticky top-14 sm:top-16 lg:top-0 z-40 bg-black border-b border-neutral-800">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-14">
                         <div className="flex items-center gap-4">
@@ -99,8 +98,8 @@ export function ShopClient({ products }: { products: Product[] }) {
                                 onClick={() => setShowFilterPanel(true)}
                                 className={cn(
                                     "flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-wider",
-                                    "border border-neutral-200 hover:border-neutral-400 transition-colors",
-                                    hasActiveFilters && "border-black bg-black text-white"
+                                    "border border-neutral-800 hover:border-neutral-600 transition-colors",
+                                    hasActiveFilters && "border-white bg-white text-black"
                                 )}
                             >
                                 <SlidersHorizontal className="w-3.5 h-3.5" />
@@ -115,7 +114,7 @@ export function ShopClient({ products }: { products: Product[] }) {
                             <div className="relative">
                                 <button
                                     onClick={() => setShowSortDropdown(!showSortDropdown)}
-                                    className="flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-wider border border-neutral-200 hover:border-neutral-400 transition-colors"
+                                    className="flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-wider border border-neutral-800 hover:border-neutral-600 transition-colors"
                                 >
                                     <span className="hidden sm:inline">Sort</span>
                                     <ChevronDown className={cn(
@@ -127,7 +126,7 @@ export function ShopClient({ products }: { products: Product[] }) {
                                 {showSortDropdown && (
                                     <>
                                         <div className="fixed inset-0 z-40" onClick={() => setShowSortDropdown(false)} />
-                                        <div className="absolute right-0 top-full mt-1 w-56 bg-white border border-neutral-200 shadow-xl z-50">
+                                        <div className="absolute right-0 top-full mt-1 w-56 bg-neutral-900 border border-neutral-800 shadow-xl z-50">
                                             {sortOptions.map((option) => (
                                                 <button
                                                     key={option.value}
@@ -136,8 +135,8 @@ export function ShopClient({ products }: { products: Product[] }) {
                                                         setShowSortDropdown(false);
                                                     }}
                                                     className={cn(
-                                                        "flex items-center justify-between w-full px-4 py-3 text-sm text-left hover:bg-neutral-50 transition-colors",
-                                                        sortBy === option.value && "bg-neutral-50 font-medium"
+                                                        "flex items-center justify-between w-full px-4 py-3 text-sm text-left hover:bg-neutral-800 transition-colors",
+                                                        sortBy === option.value && "bg-neutral-800 font-medium"
                                                     )}
                                                 >
                                                     {option.label}
@@ -176,8 +175,8 @@ export function ShopClient({ products }: { products: Product[] }) {
             {showFilterPanel && (
                 <div className="fixed inset-0 z-50">
                     <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowFilterPanel(false)} />
-                    <div className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-white shadow-2xl flex flex-col">
-                        <div className="flex items-center justify-between px-6 py-4 border-b">
+                    <div className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-neutral-900 shadow-2xl flex flex-col">
+                        <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-800">
                             <h2 className="text-lg font-bold uppercase tracking-widest">Filters</h2>
                             <button onClick={() => setShowFilterPanel(false)} className="p-2">
                                 <X className="w-5 h-5" />
@@ -194,11 +193,11 @@ export function ShopClient({ products }: { products: Product[] }) {
                                             onClick={() => toggleCategory(category.id)}
                                             className={cn(
                                                 "flex items-center justify-between w-full px-4 py-3 text-sm transition-colors",
-                                                selectedCategories.includes(category.id) ? "bg-neutral-50 font-medium" : "hover:bg-neutral-50"
+                                                selectedCategories.includes(category.id) ? "bg-neutral-800 font-medium" : "hover:bg-neutral-800"
                                             )}
                                         >
                                             <span>{category.label}</span>
-                                            <div className={cn("w-5 h-5 border flex items-center justify-center transition-colors", selectedCategories.includes(category.id) ? "bg-black border-black text-white" : "border-neutral-300")}>
+                                            <div className={cn("w-5 h-5 border flex items-center justify-center transition-colors", selectedCategories.includes(category.id) ? "bg-white border-white text-black" : "border-neutral-600")}>
                                                 {selectedCategories.includes(category.id) && <Check className="w-3 h-3" />}
                                             </div>
                                         </button>

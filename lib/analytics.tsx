@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 // Simple analytics tracking - in production, replace with Google Analytics or similar
 interface PageViewEvent {
@@ -98,5 +98,5 @@ export function useAnalytics() {
 // Provider component
 export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     useAnalytics();
-    return <>{ children } </>;
+    return <>{children} </>;
 }

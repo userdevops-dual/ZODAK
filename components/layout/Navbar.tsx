@@ -8,7 +8,7 @@ import { useCart } from "@/lib/CartContext";
 import { useSession, signOut } from "next-auth/react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { SmartSearch } from "@/components/search/SmartSearch";
 import { PremiumLink } from "@/components/ui/PremiumLink";
 import { motion, AnimatePresence } from "framer-motion";
@@ -35,7 +35,7 @@ export function Navbar() {
             className={cn(
                 "fixed top-0 w-full z-50 transition-all duration-300",
                 isScrolled || !isHome
-                    ? "bg-white text-black border-b border-gray-100 py-2 sm:py-3"
+                    ? "bg-black/95 backdrop-blur-md text-white border-b border-white/10 py-2 sm:py-3"
                     : "bg-transparent text-white py-3 sm:py-4 lg:py-5"
             )}
         >
@@ -49,20 +49,17 @@ export function Navbar() {
                                 <Menu className="w-5 h-5" />
                             </Button>
                         </SheetTrigger>
-                        <SheetContent side="left" className="w-[300px] sm:w-[350px] p-0 bg-white border-r">
-                            <SheetHeader className="sr-only">
-                                <SheetTitle>Navigation Menu</SheetTitle>
-                            </SheetHeader>
-                            <div className="flex flex-col h-full text-black">
-                                <div className="p-6 border-b border-gray-100">
-                                    <Link href="/" className="text-2xl font-bold tracking-[0.3em] text-black">ZODAK</Link>
+                        <SheetContent side="left" className="w-[300px] sm:w-[350px] p-0 bg-black text-white border-r border-neutral-800">
+                            <div className="flex flex-col h-full">
+                                <div className="p-6 border-b border-neutral-800">
+                                    <Link href="/" className="text-2xl font-bold tracking-[0.3em]">ZODAK</Link>
                                 </div>
                                 <nav className="flex-1 p-6 space-y-1">
                                     {["HOODS"].map((item) => (
                                         <SheetClose asChild key={item}>
                                             <PremiumLink
                                                 href="/shop"
-                                                className="block py-4 text-lg uppercase tracking-widest border-b border-gray-50 text-black"
+                                                className="block py-4 text-lg uppercase tracking-widest border-b border-neutral-800"
                                                 alwaysShowStars
                                             >
                                                 {item}
@@ -70,27 +67,27 @@ export function Navbar() {
                                         </SheetClose>
                                     ))}
                                     <SheetClose asChild>
-                                        <Link href="/about" className="block py-4 text-lg uppercase tracking-widest hover:pl-2 transition-all border-b border-gray-50 text-black">
+                                        <Link href="/about" className="block py-4 text-lg uppercase tracking-widest hover:pl-2 transition-all border-b border-neutral-800">
                                             About
                                         </Link>
                                     </SheetClose>
                                     <SheetClose asChild>
-                                        <Link href="/contact" className="block py-4 text-lg uppercase tracking-widest hover:pl-2 transition-all border-b border-gray-50 text-black">
+                                        <Link href="/contact" className="block py-4 text-lg uppercase tracking-widest hover:pl-2 transition-all border-b border-neutral-800">
                                             Contact
                                         </Link>
                                     </SheetClose>
                                 </nav>
-                                <div className="p-6 border-t border-gray-100 space-y-3">
+                                <div className="p-6 border-t border-neutral-800 space-y-3">
                                     {session?.user ? (
                                         <>
                                             <SheetClose asChild>
-                                                <Link href="/account" className="block w-full py-3 text-center border border-black uppercase tracking-widest text-sm">
+                                                <Link href="/account" className="block w-full py-3 text-center border border-white uppercase tracking-widest text-sm">
                                                     My Account
                                                 </Link>
                                             </SheetClose>
                                             <button
                                                 onClick={() => signOut({ callbackUrl: "/" })}
-                                                className="w-full py-3 text-center border border-gray-200 uppercase tracking-widest text-sm text-gray-500"
+                                                className="w-full py-3 text-center border border-neutral-700 uppercase tracking-widest text-sm text-neutral-400"
                                             >
                                                 Sign Out
                                             </button>
@@ -98,12 +95,12 @@ export function Navbar() {
                                     ) : (
                                         <>
                                             <SheetClose asChild>
-                                                <Link href="/login" className="block w-full py-3 text-center bg-black text-white uppercase tracking-widest text-sm">
+                                                <Link href="/login" className="block w-full py-3 text-center bg-white text-black uppercase tracking-widest text-sm">
                                                     Sign In
                                                 </Link>
                                             </SheetClose>
                                             <SheetClose asChild>
-                                                <Link href="/signup" className="block w-full py-3 text-center border border-black uppercase tracking-widest text-sm">
+                                                <Link href="/signup" className="block w-full py-3 text-center border border-white uppercase tracking-widest text-sm">
                                                     Create Account
                                                 </Link>
                                             </SheetClose>
@@ -117,15 +114,20 @@ export function Navbar() {
 
                 {/* Logo */}
                 <div className="flex items-center">
-                    <Link
-                        href="/"
-                        className={cn(
-                            "text-lg md:text-2xl font-black tracking-[0.3em]",
-                            (!isScrolled && isHome) && "mix-blend-difference text-white"
+                    <AnimatePresence>
+                        {(!isHome || isScrolled) && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                            >
+                                <Link href="/" className="text-xl md:text-2xl font-bold tracking-[0.3em]">
+                                    ZODAK
+                                </Link>
+                            </motion.div>
                         )}
-                    >
-                        ZODAK
-                    </Link>
+                    </AnimatePresence>
                 </div>
 
                 {/* Desktop Nav */}
@@ -170,9 +172,7 @@ export function Navbar() {
                         </Link>
                     )}
 
-                    <div className="hidden md:block">
-                        <CartDrawer />
-                    </div>
+                    <CartDrawer />
                 </div>
             </div>
         </header>

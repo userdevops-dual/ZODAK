@@ -17,15 +17,6 @@ const ThemeContext = createContext<ThemeContextType>({
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const [theme, setTheme] = useState<Theme>("light");
 
-    useEffect(() => {
-        // Get saved theme from localStorage
-        const saved = localStorage.getItem("zodak-theme") as Theme | null;
-        if (saved && (saved === "light" || saved === "dark")) {
-            setTheme(saved);
-            applyTheme(saved);
-        }
-    }, []);
-
     const applyTheme = (newTheme: Theme) => {
         const html = document.documentElement;
         if (newTheme === "dark") {
@@ -36,6 +27,16 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
             html.style.colorScheme = "light";
         }
     };
+
+    useEffect(() => {
+        // Get saved theme from localStorage
+        const saved = localStorage.getItem("zodak-theme") as Theme | null;
+        if (saved && (saved === "light" || saved === "dark")) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
+            setTheme(saved);
+            applyTheme(saved);
+        }
+    }, []);
 
     const toggleTheme = () => {
         const newTheme = theme === "light" ? "dark" : "light";

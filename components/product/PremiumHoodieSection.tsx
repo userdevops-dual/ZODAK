@@ -78,26 +78,26 @@ export function PremiumHoodieSection() {
 
   return (
     <section
-      className="group/slider relative h-auto min-h-[500px] lg:h-[100dvh] w-full bg-white flex flex-col justify-center overflow-hidden border-t border-neutral-50 py-8 sm:py-12"
+      className="group/slider relative h-[100dvh] w-full bg-black flex flex-col justify-center overflow-hidden border-t border-neutral-900 py-6 sm:py-8"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
 
       {/* Background Text Overlay */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none select-none z-0">
-        <h2 className="text-[10vw] leading-none font-bold text-gray-100 uppercase tracking-tighter opacity-5">
+        <h2 className="text-[10vw] leading-none font-bold text-neutral-900 uppercase tracking-tighter opacity-20">
           Premium
         </h2>
       </div>
 
       <div className="relative z-10 w-full">
-        <div className="container-mobile mx-auto px-4 sm:px-12 lg:px-20 mb-8 sm:mb-12 text-center lg:text-left">
-          <div className="flex flex-col items-center lg:items-start">
-            <span className="text-[9px] uppercase tracking-[0.4em] text-neutral-400 block mb-2 font-bold">
-              Premium Drops
+        <div className="container-mobile mx-auto px-4 sm:px-12 lg:px-20 mb-6 sm:mb-8 flex justify-between items-end">
+          <div>
+            <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] text-neutral-400 block mb-2">
+              The Collection
             </span>
-            <h3 className="text-xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tighter text-black leading-none max-w-[200px] sm:max-w-none">
-              {showRecent ? "Recently Viewed" : "Exclusive Hoodies"}
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-tight text-white leading-none">
+              {showRecent ? "Recently Viewed" : "Premium Hoodies"}
             </h3>
           </div>
           <div className="hidden sm:flex items-center gap-4">
@@ -107,24 +107,13 @@ export function PremiumHoodieSection() {
           </div>
         </div>
 
-        {/* Mobile Swipe Gallery (Native Snap) */}
-        <div className="md:hidden w-full overflow-x-auto snap-x snap-mandatory flex gap-4 px-4 pb-8 no-scrollbar">
-          {displayProducts.map((product) => (
-            <div key={product.id} className="min-w-[85vw] snap-center">
-              <ProductCard product={product} onQuickView={handleQuickView} theme="light" />
-            </div>
-          ))}
-          {/* Snap spacer at end */}
-          <div className="min-w-[4vw] snap-center" />
-        </div>
-
-        {/* Desktop Carousel Container */}
-        <div className="relative w-full hidden md:block">
+        {/* Carousel Container */}
+        <div className="relative w-full">
           {/* Navigation Arrows - Desktop Only */}
           <button
             onClick={handlePrev}
             disabled={totalProducts === 0}
-            className="absolute left-4 lg:left-8 top-[40%] -translate-y-1/2 z-30 w-12 h-12 hidden md:flex items-center justify-center bg-black text-white rounded-full opacity-0 group-hover/slider:opacity-100 transition-all duration-500 shadow-2xl disabled:hidden hover:scale-110 active:scale-90"
+            className="absolute left-4 lg:left-8 top-[40%] -translate-y-1/2 z-30 w-12 h-12 hidden md:flex items-center justify-center bg-white text-black rounded-full opacity-0 group-hover/slider:opacity-100 transition-all duration-500 shadow-2xl disabled:hidden hover:scale-110 active:scale-90"
             aria-label="Previous"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -133,7 +122,7 @@ export function PremiumHoodieSection() {
           <button
             onClick={handleNext}
             disabled={totalProducts === 0}
-            className="absolute right-4 lg:right-8 top-[40%] -translate-y-1/2 z-30 w-12 h-12 hidden md:flex items-center justify-center bg-black text-white rounded-full opacity-0 group-hover/slider:opacity-100 transition-all duration-500 shadow-2xl disabled:hidden hover:scale-110 active:scale-90"
+            className="absolute right-4 lg:right-8 top-[40%] -translate-y-1/2 z-30 w-12 h-12 hidden md:flex items-center justify-center bg-white text-black rounded-full opacity-0 group-hover/slider:opacity-100 transition-all duration-500 shadow-2xl disabled:hidden hover:scale-110 active:scale-90"
             aria-label="Next"
           >
             <ChevronRight className="w-5 h-5" />
@@ -142,7 +131,7 @@ export function PremiumHoodieSection() {
           {/* Recently Viewed Toggle Button */}
           <button
             onClick={handleToggleRecent}
-            className="absolute right-4 lg:right-8 top-[55%] z-30 px-5 py-3 md:px-4 md:py-2 flex items-center gap-2 bg-black text-white text-[10px] sm:text-xs uppercase tracking-[0.15em] rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all"
+            className="absolute right-4 lg:right-8 top-[55%] z-30 px-5 py-3 md:px-4 md:py-2 flex items-center gap-2 bg-white text-black text-[10px] sm:text-xs uppercase tracking-[0.15em] rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all"
             aria-label="Toggle Recently Viewed"
           >
             <Clock className="w-3 h-3" />
@@ -199,7 +188,7 @@ export function PremiumHoodieSection() {
               <motion.button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
-                className={`h-1.5 rounded-full transition-all ${idx === currentIndex ? "bg-black" : "bg-gray-300"
+                className={`h-1.5 rounded-full transition-all ${idx === currentIndex ? "bg-white" : "bg-neutral-800"
                   }`}
                 animate={{
                   width: idx === currentIndex ? 32 : 6,

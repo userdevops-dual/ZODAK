@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Product } from "./products";
+import { useState, useEffect, useCallback } from "react";
+import { Product, getProductById } from "./products";
 
 const STORAGE_KEY = "zodak_recently_viewed";
 const MAX_ITEMS = 5;
@@ -9,20 +9,33 @@ const MAX_ITEMS = 5;
 export function useRecentlyViewed() {
     const [recentlyViewed, setRecentlyViewed] = useState<Product[]>([]);
 
-    // Load from localStorage on mount
-    useEffect(() => {
+    const loadFromStorage = useCallback(() => {
         try {
             const stored = localStorage.getItem(STORAGE_KEY);
             if (stored) {
                 const productIds = JSON.parse(stored) as string[];
-                // We'll need to fetch the full product data
-                // For now, just store the IDs
-                setRecentlyViewed(productIds as any);
+                const products = productIds
+                    .map(id => getProductById(id))
+                    .filter((p): p is Product => p !== undefined);
+                setRecentlyViewed(products);
             }
         } catch (error) {
             console.error("Failed to load recently viewed:", error);
         }
     }, []);
+
+    // Load from localStorage on mount and listen for updates
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        loadFromStorage();
+
+        const handleUpdate = () => loadFromStorage();
+        window.addEventListener("recentlyViewedUpdated", handleUpdate);
+
+        return () => {
+            window.removeEventListener("recentlyViewedUpdated", handleUpdate);
+        };
+    }, [loadFromStorage]);
 
     const addToHistory = (product: Product) => {
         try {
@@ -42,8 +55,7 @@ export function useRecentlyViewed() {
             // Save back to localStorage
             localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
 
-            // Update state (we'll need to convert IDs back to products)
-            // For now, trigger a re-fetch
+            // Trigger update event
             const event = new CustomEvent("recentlyViewedUpdated");
             window.dispatchEvent(event);
         } catch (error) {

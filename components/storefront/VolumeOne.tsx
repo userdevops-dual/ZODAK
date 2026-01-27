@@ -49,7 +49,7 @@ export async function VolumeOne() {
                                     productImage = parsed[0];
                                 }
                             }
-                        } catch (e) {
+                        } catch {
                             // Fallback
                         }
 

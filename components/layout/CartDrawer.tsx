@@ -23,8 +23,8 @@ export function CartDrawer() {
                     )}
                 </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full sm:max-w-md p-0 flex flex-col h-full bg-white border-0">
-                <SheetHeader className="p-6 border-b border-neutral-100 flex flex-row items-center justify-between">
+            <SheetContent side="right" className="w-full sm:max-w-md p-0 flex flex-col h-full bg-neutral-900 border-l border-neutral-800 text-white">
+                <SheetHeader className="p-6 border-b border-neutral-800 flex flex-row items-center justify-between">
                     <SheetTitle className="text-sm uppercase tracking-[0.2em] font-black">
                         Your Bag ({totalItems})
                     </SheetTitle>
@@ -37,15 +37,15 @@ export function CartDrawer() {
                 <div className="flex-1 overflow-y-auto p-6 space-y-8 no-scrollbar">
                     {items.length === 0 ? (
                         <div className="h-full flex flex-col items-center justify-center text-center space-y-4 py-20">
-                            <div className="p-4 bg-neutral-50 rounded-full">
-                                <ShoppingBag className="w-8 h-8 text-neutral-200" />
+                            <div className="p-4 bg-neutral-800 rounded-full">
+                                <ShoppingBag className="w-8 h-8 text-neutral-400" />
                             </div>
                             <div>
                                 <p className="text-xs uppercase tracking-widest font-bold mb-1">Your bag is empty</p>
                                 <p className="text-[10px] text-neutral-400 uppercase tracking-widest">Start adding items to see them here</p>
                             </div>
                             <SheetClose asChild>
-                                <Button asChild className="rounded-none bg-black text-white px-8 py-6 uppercase tracking-widest text-[10px] font-black mt-4">
+                                <Button asChild className="rounded-none bg-white text-black px-8 py-6 uppercase tracking-widest text-[10px] font-black mt-4 hover:bg-neutral-200">
                                     <Link href="/shop">Start Shopping</Link>
                                 </Button>
                             </SheetClose>
@@ -53,7 +53,7 @@ export function CartDrawer() {
                     ) : (
                         items.map((item) => (
                             <div key={item.id} className="flex gap-4 group">
-                                <div className="relative aspect-[3/4] w-20 bg-neutral-50 overflow-hidden shrink-0">
+                                <div className="relative aspect-[3/4] w-20 bg-neutral-800 overflow-hidden shrink-0">
                                     <Image src={item.image} alt={item.name} fill className="object-cover" />
                                 </div>
                                 <div className="flex-1 flex flex-col justify-between py-0.5">
@@ -74,17 +74,17 @@ export function CartDrawer() {
                                         </p>
                                     </div>
                                     <div className="flex items-center justify-between mt-4">
-                                        <div className="flex items-center border border-neutral-100 bg-white shadow-sm overflow-hidden">
+                                        <div className="flex items-center border border-neutral-700 bg-black shadow-sm overflow-hidden">
                                             <button
                                                 onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                                className="p-2 hover:bg-neutral-50 touch-target"
+                                                className="p-2 hover:bg-neutral-800 touch-target"
                                             >
                                                 <Minus className="w-3 h-3" />
                                             </button>
                                             <span className="text-[10px] font-black w-6 text-center">{item.quantity}</span>
                                             <button
                                                 onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                                className="p-2 hover:bg-neutral-50 touch-target"
+                                                className="p-2 hover:bg-neutral-800 touch-target"
                                                 disabled={item.quantity >= item.stockLimit}
                                             >
                                                 <Plus className="w-3 h-3" />
@@ -101,16 +101,16 @@ export function CartDrawer() {
                 </div>
 
                 {items.length > 0 && (
-                    <div className="p-6 bg-neutral-50/50 border-t border-neutral-100 safe-area-bottom">
+                    <div className="p-6 bg-neutral-900 border-t border-neutral-800 safe-area-bottom">
                         <div className="flex justify-between items-center mb-6">
                             <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-neutral-400">Estimated Total</span>
                             <span className="text-xl font-black">${totalAmount.toFixed(0)}</span>
                         </div>
                         <div className="flex flex-col gap-3">
                             <SheetClose asChild>
-                                <Button asChild className="w-full h-11 md:h-14 bg-black text-white hover:bg-neutral-800 rounded-none text-[10px] font-black uppercase tracking-[0.2em] shadow-xl">
+                                <Button asChild className="w-full h-14 bg-white text-black hover:bg-neutral-200 rounded-none text-[10px] font-black uppercase tracking-[0.3em] shadow-xl">
                                     <Link href="/checkout" className="flex items-center justify-center gap-2">
-                                        Checkout <ArrowRight className="w-3 h-3" />
+                                        Checkout <ArrowRight className="w-3.5 h-3.5" />
                                     </Link>
                                 </Button>
                             </SheetClose>

@@ -42,7 +42,7 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-white px-4">
+        <div className="min-h-screen flex items-center justify-center bg-black text-white px-4">
             <div className="w-full max-w-md space-y-8">
                 {/* Logo */}
                 <div className="text-center">
@@ -99,7 +99,7 @@ export default function LoginPage() {
                 {/* Signup Link */}
                 <div className="text-center pt-6 border-t border-gray-100">
                     <p className="text-sm text-gray-500">
-                        Don't have an account?{" "}
+                        Don&apos;t have an account?{" "}
                         <Link href="/signup" className="text-black font-bold uppercase tracking-wider text-xs hover:underline">
                             Create Account
                         </Link>

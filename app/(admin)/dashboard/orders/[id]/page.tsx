@@ -105,6 +105,6 @@ export default async function OrderDetailsPage({ params }: { params: Promise<{ i
                     </Card>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }

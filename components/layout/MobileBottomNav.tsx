@@ -18,7 +18,7 @@ export function MobileBottomNav() {
     const { totalItems } = useCart();
 
     return (
-        <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-gray-200 md:hidden">
+        <nav className="fixed bottom-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-t border-white/10 md:hidden">
             <div className="flex items-center justify-around h-14 max-w-md mx-auto px-2">
                 {navItems.map((item) => {
                     const isActive = pathname === item.href ||
@@ -31,7 +31,7 @@ export function MobileBottomNav() {
                             className={cn(
                                 "flex flex-col items-center justify-center px-3 py-1.5",
                                 "transition-colors duration-200",
-                                isActive ? "text-black" : "text-gray-400"
+                                isActive ? "text-white" : "text-neutral-500"
                             )}
                         >
                             <div className="relative">
@@ -39,7 +39,7 @@ export function MobileBottomNav() {
 
                                 {/* Cart Badge */}
                                 {item.showBadge && totalItems > 0 && (
-                                    <span className="absolute -top-1 -right-2 min-w-[16px] h-4 px-1 bg-black text-white text-[9px] font-bold rounded-full flex items-center justify-center">
+                                    <span className="absolute -top-1 -right-2 min-w-[16px] h-4 px-1 bg-white text-black text-[9px] font-bold rounded-full flex items-center justify-center">
                                         {totalItems > 9 ? "9+" : totalItems}
                                     </span>
                                 )}

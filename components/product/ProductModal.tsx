@@ -27,15 +27,7 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     // Reset states when modal opens/closes
-    useEffect(() => {
-        if (isOpen && product) {
-            setSelectedSize(null);
-            setSelectedColor(product.colors[0]);
-            setQuantity(1);
-            setIsAdded(false);
-            setCurrentImageIndex(0);
-        }
-    }, [isOpen, product]);
+    // State resets handled by key prop on mount
 
     if (!product) return null;
 
@@ -78,7 +70,7 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
     return (
         <AnimatePresence>
             {isOpen && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-8">
+                <div key={product.id} className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-8">
                     {/* Overlay */}
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -93,12 +85,12 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                        className="relative w-full max-w-5xl max-h-[90vh] bg-white shadow-2xl overflow-hidden flex flex-col md:flex-row"
+                        className="relative w-full max-w-5xl max-h-[90vh] bg-neutral-900 text-white shadow-2xl overflow-hidden flex flex-col md:flex-row"
                     >
                         {/* Close Button */}
                         <button
                             onClick={onClose}
-                            className="absolute top-4 right-4 z-50 p-2 bg-white/80 backdrop-blur shadow-sm rounded-full hover:bg-black hover:text-white transition-all"
+                            className="absolute top-4 right-4 z-50 p-2 bg-black/50 backdrop-blur shadow-sm rounded-full hover:bg-white hover:text-black transition-all"
                         >
                             <X className="w-5 h-5" />
                         </button>
@@ -170,7 +162,7 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                                 </p>
                                 <Link
                                     href={`/product/${product.id}`}
-                                    className="text-xs underline underline-offset-2 text-black mt-2 inline-block font-medium"
+                                    className="text-xs underline underline-offset-2 text-white mt-2 inline-block font-medium"
                                 >
                                     Full product details
                                 </Link>
@@ -188,7 +180,7 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                                                 onClick={() => setSelectedColor(color)}
                                                 className={cn(
                                                     "w-8 h-8 rounded-full border-2 transition-transform hover:scale-110",
-                                                    selectedColor === color ? "border-black" : "border-transparent"
+                                                    selectedColor === color ? "border-white" : "border-transparent"
                                                 )}
                                                 style={{ backgroundColor: bg }}
                                                 title={color}
@@ -212,8 +204,8 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                                             className={cn(
                                                 "min-w-[50px] h-12 px-4 border text-[11px] font-medium transition-all duration-300",
                                                 selectedSize === size
-                                                    ? "bg-black border-black text-white"
-                                                    : "bg-white border-neutral-200 text-neutral-800 hover:border-black"
+                                                    ? "bg-white border-white text-black"
+                                                    : "bg-neutral-900 border-neutral-700 text-neutral-300 hover:border-white"
                                             )}
                                         >
                                             {size}
@@ -223,17 +215,17 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                             </div>
 
                             {/* Quantity & Add to Bag - STICKY ON MOBILE */}
-                            <div className="mt-auto space-y-4 pt-6 border-t border-neutral-100 bg-white sticky bottom-0 left-0 right-0 py-4 md:static z-10">
+                            <div className="mt-auto space-y-4 pt-6 border-t border-neutral-800 bg-neutral-900 sticky bottom-0 left-0 right-0 py-4 md:static z-10">
                                 <div className="flex items-center justify-between">
                                     <h3 className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-semibold">Quantity</h3>
-                                    <div className="flex items-center border border-neutral-200">
+                                    <div className="flex items-center border border-neutral-700">
                                         <button
                                             onClick={() => setQuantity(Math.max(1, quantity - 1))}
                                             className="w-10 h-10 flex items-center justify-center hover:bg-neutral-50"
                                         >
                                             <Minus className="w-3 h-3" />
                                         </button>
-                                        <span className="w-10 h-10 flex items-center justify-center text-xs font-medium border-x border-neutral-200">{quantity}</span>
+                                        <span className="w-10 h-10 flex items-center justify-center text-xs font-medium border-x border-neutral-700">{quantity}</span>
                                         <button
                                             onClick={() => setQuantity(Math.min(product.stockLimit, quantity + 1))}
                                             className="w-10 h-10 flex items-center justify-center hover:bg-neutral-50"
@@ -250,7 +242,7 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                                         "w-full h-14 flex items-center justify-center gap-3 text-xs uppercase tracking-[0.2em] font-medium transition-all duration-500",
                                         isAdded
                                             ? "bg-green-600 text-white"
-                                            : "bg-black text-white hover:bg-neutral-900"
+                                            : "bg-white text-black hover:bg-neutral-200"
                                     )}
                                 >
                                     {isAdding ? (

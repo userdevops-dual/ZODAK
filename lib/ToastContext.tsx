@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useCallback, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ShoppingCart, ArrowRight } from "lucide-react";
+import { X, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 
 interface Toast {
@@ -29,6 +29,10 @@ const ToastContext = createContext<ToastContextType | undefined>(undefined);
 export function ToastProvider({ children }: { children: ReactNode }) {
     const [toasts, setToasts] = useState<Toast[]>([]);
 
+    const hideToast = useCallback((id: string) => {
+        setToasts((prev) => prev.filter((t) => t.id !== id));
+    }, []);
+
     const showToast = useCallback((toast: Omit<Toast, "id">) => {
         const id = Math.random().toString(36).substr(2, 9);
         const newToast = { ...toast, id };
@@ -38,11 +42,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
         setTimeout(() => {
             hideToast(id);
         }, 5000);
-    }, []);
-
-    const hideToast = useCallback((id: string) => {
-        setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, []);
+    }, [hideToast]);
 
     return (
         <ToastContext.Provider value={{ showToast, hideToast }}>

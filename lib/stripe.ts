@@ -14,7 +14,7 @@ export const stripe = {
     }
 };
 
-export async function processMockPayment(amount: number) {
+export async function processMockPayment(_amount: number) {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve({ success: true, transactionId: "tx_" + Math.random().toString(36).substring(7) });

@@ -24,6 +24,12 @@ export function SmartSearch() {
     const inputRef = useRef<HTMLInputElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
+    const closeSearch = () => {
+        setIsOpen(false);
+        setQuery("");
+        setResults([]);
+    };
+
     // Close on outside click
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
@@ -114,11 +120,7 @@ export function SmartSearch() {
         setTimeout(() => inputRef.current?.focus(), 150);
     };
 
-    const closeSearch = () => {
-        setIsOpen(false);
-        setQuery("");
-        setResults([]);
-    };
+
 
     return (
         <div ref={containerRef} className="relative z-50">
@@ -161,7 +163,7 @@ export function SmartSearch() {
                                             onChange={(e) => setQuery(e.target.value)}
                                             onKeyDown={handleKeyDown}
                                             placeholder="Search..."
-                                            className="flex-1 text-lg font-light outline-none bg-transparent text-black placeholder:text-gray-300 tracking-wide"
+                                            className="flex-1 text-lg font-light outline-none bg-transparent placeholder:text-gray-300 tracking-wide"
                                             autoComplete="off"
                                         />
 

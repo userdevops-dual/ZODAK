@@ -51,6 +51,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         const savedCart = localStorage.getItem("zodak_cart");
         if (savedCart) {
             try {
+                // eslint-disable-next-line react-hooks/set-state-in-effect
                 setItems(JSON.parse(savedCart));
             } catch (error) {
                 console.error("Failed to parse cart data", error);

@@ -12,26 +12,17 @@ import { products } from "@/lib/products";
 import { ProductCard } from "@/components/product/ProductCard";
 import { motion } from "framer-motion";
 
-// Dot particles configuration for "Volume One" button animation
-const dots = [
-  { top: "-10%", left: "5%", delay: "0s", size: "5px" },   // Top-left (V)
-  { top: "85%", left: "30%", delay: "0.5s", size: "4px" }, // Bottom-mid (u)
-  { top: "-15%", left: "60%", delay: "1.2s", size: "6px" },// Top-mid (e)
-  { top: "70%", left: "95%", delay: "0.8s", size: "5px" }, // Bottom-right (e)
-  { top: "20%", left: "102%", delay: "1.5s", size: "4px" },// Far right (side)
-];
-
 export default function Home() {
   // Select first 4 hoodies for the "Featured" section
   const featuredHoodies = products.filter(p => p.category.toLowerCase() === "hoodies").slice(0, 4);
 
   return (
-    <div className="min-h-screen bg-white text-black overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
 
       {/* 1. HERO SECTION */}
-      <section className="relative h-[80dvh] md:h-[100dvh] w-full bg-black overflow-hidden">
+      <section className="relative h-[100dvh] w-full bg-black overflow-hidden">
         {/* Background */}
-        <div className="absolute inset-0 z-0 opacity-80">
+        <div className="absolute inset-0 z-0 opacity-60">
           <video
             autoPlay
             muted
@@ -39,9 +30,9 @@ export default function Home() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/videos/hero-video.mp4" type="video/mp4" />
+            <source src="https://videos.pexels.com/video-files/7653556/7653556-uhd_2560_1440_30fps.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
 
         <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4 pb-20">
@@ -51,46 +42,18 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.2 }}
             className="space-y-6"
           >
-            <h1
-              className="text-7xl sm:text-8xl md:text-9xl font-thin uppercase tracking-tighter text-white mix-blend-difference"
-            >
+            <h1 className="text-6xl sm:text-8xl md:text-9xl font-black uppercase tracking-tighter text-white mix-blend-difference">
               ZODAK
             </h1>
-            <p className="text-xs sm:text-lg md:text-xl font-light uppercase tracking-[0.2em] text-white/90 max-w-2xl mx-auto leading-relaxed px-6 -mt-2">
+            <p className="text-sm sm:text-lg md:text-xl font-light uppercase tracking-[0.3em] text-white/90 max-w-2xl mx-auto leading-relaxed">
               Crafted for the cold. Designed for presence.
             </p>
 
-            <div className="flex flex-col items-center sm:flex-row gap-3 justify-center pt-8">
-              <Button
-                className="bg-white text-black hover:bg-neutral-200 rounded-none h-10 md:h-14 px-4 md:px-8 uppercase tracking-widest text-[10px] sm:text-sm font-black w-48 sm:w-auto group relative overflow-visible"
-                onClick={() => {
-                  const section = document.getElementById('volume-one');
-                  if (section) {
-                    const elementPosition = section.getBoundingClientRect().top + window.pageYOffset;
-                    window.scrollTo({
-                      top: elementPosition,
-                      behavior: "smooth"
-                    });
-                  }
-                }}
-              >
-                <span className="relative z-10">Volume One</span>
-                {/* Black Dot Animation on Hover */}
-                {dots.map((dot, i) => (
-                  <div
-                    key={i}
-                    className="absolute bg-black rounded-full star-animation pointer-events-none"
-                    style={{
-                      top: dot.top,
-                      left: dot.left,
-                      width: dot.size,
-                      height: dot.size,
-                      animationDelay: dot.delay
-                    }}
-                  />
-                ))}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+              <Button asChild className="bg-white text-black hover:bg-neutral-200 rounded-none h-14 px-8 uppercase tracking-widest font-bold text-xs sm:text-sm">
+                <Link href="#volume-one">Volume One</Link>
               </Button>
-              <Button asChild variant="outline" className="border-white text-white hover:bg-white hover:text-black rounded-none h-10 md:h-14 px-4 md:px-8 uppercase tracking-widest text-[10px] sm:text-sm font-black w-48 sm:w-auto">
+              <Button asChild variant="outline" className="border-white text-white hover:bg-white hover:text-black rounded-none h-14 px-8 uppercase tracking-widest font-bold text-xs sm:text-sm">
                 <Link href="/shop">View Collection</Link>
               </Button>
             </div>
@@ -99,7 +62,7 @@ export default function Home() {
       </section>
 
       {/* 2. FEATURED / SIGNATURE HOODIES */}
-      <section id="signature-series" className="pt-16 pb-8 lg:py-24 bg-white overflow-hidden">
+      <section id="signature-series" className="py-12 lg:py-24 bg-black overflow-hidden">
         <div className="container-mobile mx-auto px-4 sm:px-8">
           <div className="flex justify-between items-end mb-8">
             <h2 className="text-2xl lg:text-5xl font-light uppercase tracking-tighter leading-tight">
@@ -110,7 +73,7 @@ export default function Home() {
             </PremiumLink>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6 sm:gap-x-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 sm:gap-x-8 max-w-5xl mx-auto">
             {featuredHoodies.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

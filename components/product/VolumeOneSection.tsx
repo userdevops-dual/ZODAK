@@ -44,7 +44,7 @@ export function VolumeOneSection() {
     return (
         <section
             id="volume-one"
-            className="relative w-full bg-black h-auto md:min-h-[100dvh]"
+            className="relative w-full bg-black min-h-[100dvh] scroll-mt-32"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -52,25 +52,23 @@ export function VolumeOneSection() {
             <BloodSplatter />
 
             {/* Main Content Container */}
-            <div className="relative z-10 flex flex-col lg:flex-row pt-10 pb-8 px-4 sm:px-12 lg:px-16 gap-4 lg:gap-16 items-center">
+            <div className="relative z-10 flex flex-col lg:flex-row pt-20 pb-20 px-4 sm:px-12 lg:px-16 gap-8 lg:gap-16">
 
                 {/* Left Column: Sticky Title (Desktop Only) */}
-                <div className="w-full lg:flex-1 relative text-left">
-                    <div className="lg:sticky lg:top-0 h-auto lg:h-[100dvh] w-full flex flex-col justify-start lg:justify-center overflow-hidden">
+                <div className="w-full lg:flex-1 relative">
+                    <div className="lg:sticky lg:top-0 h-auto lg:h-[100dvh] w-full flex flex-col justify-center overflow-hidden py-10 lg:py-0">
                         {/* Archive Release Label */}
-                        <span className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-white/50 font-bold mb-1 block">
+                        <span className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-white/60 font-medium mb-4 block">
                             Archive Release
                         </span>
 
-                        {/* Volume One Title - Responsive Fluid Typography */}
-                        <h2
-                            className="text-[clamp(4.5rem,10vw,9rem)] font-black uppercase tracking-[0.2em] text-white leading-[0.8]"
-                        >
+                        {/* Volume One Title */}
+                        <h2 className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tighter text-white leading-[0.85]">
                             Volume<br />
                             <motion.span
                                 animate={{
                                     opacity: [1, 0.4, 1, 0.2, 1, 0.5, 1],
-                                    color: ["#ff0000", "#8b0000", "#ff0000", "#500000", "#ff0000", "#8b0000", "#ff0000"],
+                                    color: ["#ff0000", "#8b0000", "#ff0000", "#500000", "#ff0000", "#8b0000", "#ff0000"], // Red blinking
                                     textShadow: [
                                         "0 0 20px rgba(255,0,0,0.5)",
                                         "0 0 10px rgba(255,0,0,0.2)",
@@ -88,7 +86,7 @@ export function VolumeOneSection() {
                                     ease: "easeInOut",
                                     times: [0, 0.1, 0.2, 0.4, 0.5, 0.8, 1]
                                 }}
-                                className="inline-block xl:text-left !text-[clamp(6rem,15vw,11rem)] !font-black !leading-[0.8]"
+                                className="inline-block"
                             >
                                 One
                             </motion.span>

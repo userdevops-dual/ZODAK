@@ -58,8 +58,8 @@ export default function CheckoutPage() {
         return (
             <div className="container mx-auto px-4 py-32 text-center">
                 <h1 className="text-2xl font-bold uppercase tracking-widest mb-4">Your Bag is Empty</h1>
-                <p className="text-gray-500 mb-8">You haven't added any items to your bag yet.</p>
-                <Button asChild className="rounded-none bg-black text-white px-8 py-6 uppercase tracking-widest text-sm font-bold">
+                <p className="text-gray-500 mb-8">You haven&apos;t added any items to your bag yet.</p>
+                <Button asChild className="rounded-none bg-white text-black px-8 py-6 uppercase tracking-widest text-sm font-bold hover:bg-neutral-200">
                     <Link href="/shop">Continue Shopping</Link>
                 </Button>
             </div>
@@ -69,7 +69,7 @@ export default function CheckoutPage() {
     if (isSuccess) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center container mx-auto px-4 text-center">
-                <CheckCircle2 className="w-20 h-20 text-black mb-8 animate-in icon-in" />
+                <CheckCircle2 className="w-20 h-20 text-white mb-8 animate-in icon-in" />
                 <h1 className="text-4xl font-bold uppercase tracking-[0.2em] mb-4">Order Confirmed</h1>
                 <p className="text-gray-500 mb-8 max-w-md mx-auto">
                     Thank you for your purchase. We've sent a confirmation email to your registry. Your order will be shipped shortly.
@@ -80,9 +80,9 @@ export default function CheckoutPage() {
     }
 
     return (
-        <div className="bg-white min-h-screen pb-32 lg:pb-0">
+        <div className="bg-black text-white min-h-screen pb-32 lg:pb-0">
             {/* Minimal Checkout Header */}
-            <div className="border-b border-gray-100 py-4 sm:py-6 lg:py-8 safe-area-top">
+            <div className="border-b border-neutral-800 py-4 sm:py-6 lg:py-8 safe-area-top">
                 <div className="container-mobile mx-auto flex justify-between items-center">
                     <Link href="/cart" className="flex items-center gap-1.5 sm:gap-2 text-[9px] sm:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.2em] font-bold text-gray-400 hover:text-black transition-colors touch-target">
                         <ArrowLeft className="w-3 h-3" />
@@ -107,47 +107,47 @@ export default function CheckoutPage() {
                             {/* Shipping Information */}
                             <div className="space-y-6 sm:space-y-8">
                                 <div className="flex items-center gap-3 sm:gap-4">
-                                    <span className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black text-white text-[10px] sm:text-xs font-bold">1</span>
+                                    <span className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white text-black text-[10px] sm:text-xs font-bold">1</span>
                                     <h2 className="text-base sm:text-lg lg:text-xl font-bold uppercase tracking-wider sm:tracking-widest">Shipping Address</h2>
                                 </div>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
                                     <div className="space-y-2 sm:space-y-3">
-                                        <Label className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold">First Name</Label>
-                                        <Input required className="rounded-none border-gray-200 focus:border-black h-12 sm:h-13 lg:h-14 touch-target" />
+                                        <Label className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold text-gray-400">First Name</Label>
+                                        <Input required className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
                                     </div>
                                     <div className="space-y-2 sm:space-y-3">
                                         <Label className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold">Last Name</Label>
-                                        <Input required className="rounded-none border-gray-200 focus:border-black h-12 sm:h-13 lg:h-14 touch-target" />
+                                        <Input required className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
                                     </div>
                                     <div className="sm:col-span-2 space-y-2 sm:space-y-3">
                                         <Label className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold">Email Address</Label>
-                                        <Input required type="email" className="rounded-none border-gray-200 focus:border-black h-12 sm:h-13 lg:h-14 touch-target" />
+                                        <Input required type="email" className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
                                     </div>
                                     <div className="sm:col-span-2 space-y-2 sm:space-y-3">
                                         <Label className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold">Street Address</Label>
-                                        <Input required className="rounded-none border-gray-200 focus:border-black h-12 sm:h-13 lg:h-14 touch-target" />
+                                        <Input required className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
                                     </div>
                                     <div className="space-y-2 sm:space-y-3">
                                         <Label className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold">City / District</Label>
-                                        <Input required className="rounded-none border-gray-200 focus:border-black h-12 sm:h-13 lg:h-14 touch-target" />
+                                        <Input required className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
                                     </div>
                                     <div className="space-y-2 sm:space-y-3">
                                         <Label className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold">Postal Code</Label>
-                                        <Input required className="rounded-none border-gray-200 focus:border-black h-12 sm:h-13 lg:h-14 touch-target" />
+                                        <Input required className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
                                     </div>
                                 </div>
                             </div>
 
                             {/* Payment Selection */}
-                            <div className="space-y-8 pt-8 border-t border-gray-100">
+                            <div className="space-y-8 pt-8 border-t border-neutral-800">
                                 <div className="flex items-center gap-4">
-                                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-black text-white text-xs font-bold">2</span>
+                                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black text-xs font-bold">2</span>
                                     <h2 className="text-xl font-bold uppercase tracking-widest">Payment Method</h2>
                                 </div>
 
                                 <div className="space-y-6">
-                                    <div className="bg-gray-50 p-8 border border-gray-100 space-y-6">
+                                    <div className="bg-neutral-900 p-8 border border-neutral-800 space-y-6">
                                         <div className="flex justify-between items-center mb-4">
                                             <span className="text-[10px] uppercase tracking-widest font-bold">Credit / Debit Card</span>
                                             <div className="flex gap-2">
@@ -158,16 +158,16 @@ export default function CheckoutPage() {
                                         <div className="space-y-4">
                                             <div className="space-y-3">
                                                 <Label className="text-[10px] uppercase tracking-widest font-bold">Card Number</Label>
-                                                <Input placeholder="0000 0000 0000 0000" className="rounded-none border-gray-200 focus:border-black h-12 bg-white" />
+                                                <Input placeholder="0000 0000 0000 0000" className="rounded-none border-neutral-700 bg-black focus:border-white h-12 text-white placeholder:text-neutral-600" />
                                             </div>
                                             <div className="grid grid-cols-2 gap-6">
                                                 <div className="space-y-3">
                                                     <Label className="text-[10px] uppercase tracking-widest font-bold">Expiry Date</Label>
-                                                    <Input placeholder="MM / YY" className="rounded-none border-gray-200 focus:border-black h-12 bg-white" />
+                                                    <Input placeholder="MM / YY" className="rounded-none border-neutral-700 bg-black focus:border-white h-12 text-white placeholder:text-neutral-600" />
                                                 </div>
                                                 <div className="space-y-3">
                                                     <Label className="text-[10px] uppercase tracking-widest font-bold">CVV</Label>
-                                                    <Input placeholder="123" className="rounded-none border-gray-200 focus:border-black h-12 bg-white" />
+                                                    <Input placeholder="123" className="rounded-none border-neutral-700 bg-black focus:border-white h-12 text-white placeholder:text-neutral-600" />
                                                 </div>
                                             </div>
                                         </div>
@@ -179,7 +179,7 @@ export default function CheckoutPage() {
                                 <Button
                                     type="submit"
                                     disabled={isProcessing}
-                                    className="w-full bg-black text-white hover:bg-neutral-800 rounded-none h-16 text-sm font-black uppercase tracking-[0.2em] shadow-xl transition-all"
+                                    className="w-full bg-white text-black hover:bg-neutral-200 rounded-none h-16 text-sm font-black uppercase tracking-[0.2em] shadow-xl transition-all"
                                 >
                                     {isProcessing ? "Processing Security Protocol..." : `Complete Purchase · $${totalAmount.toFixed(2)}`}
                                 </Button>
@@ -193,13 +193,13 @@ export default function CheckoutPage() {
 
                     {/* Right: Order Summary Sidebar */}
                     <div className="lg:col-span-5">
-                        <div className="bg-gray-50 p-10 space-y-10 sticky top-32">
-                            <h2 className="text-lg font-bold uppercase tracking-[0.15em] border-b border-gray-200 pb-6">Your Order ({totalItems})</h2>
+                        <div className="bg-neutral-900 p-10 space-y-10 sticky top-32 border border-neutral-800">
+                            <h2 className="text-lg font-bold uppercase tracking-[0.15em] border-b border-neutral-800 pb-6">Your Order ({totalItems})</h2>
 
-                            <div className="space-y-8 max-h-[40vh] overflow-y-auto px-2 scrollbar-thin scrollbar-thumb-gray-200">
+                            <div className="space-y-8 max-h-[40vh] overflow-y-auto px-2 scrollbar-thin scrollbar-thumb-neutral-700">
                                 {items.map((item, index) => (
                                     <div key={item.id || index} className="flex gap-4 group relative">
-                                        <div className="relative aspect-[3/4] h-24 bg-white overflow-hidden shrink-0 border border-gray-100">
+                                        <div className="relative aspect-[3/4] h-24 bg-neutral-800 overflow-hidden shrink-0 border border-neutral-800">
                                             <Image src={item.image} alt={item.name} fill className="object-cover" />
                                         </div>
                                         <div className="flex flex-col justify-between py-1 flex-1">
@@ -220,28 +220,28 @@ export default function CheckoutPage() {
                                 ))}
                             </div>
 
-                            <div className="space-y-4 pt-8 border-t border-gray-200 text-xs uppercase tracking-widest">
+                            <div className="space-y-4 pt-8 border-t border-neutral-800 text-xs uppercase tracking-widest">
                                 <div className="flex justify-between text-gray-500">
                                     <span>Subtotal</span>
-                                    <span className="text-black font-bold">${subtotal.toFixed(2)}</span>
+                                    <span className="text-white font-bold">${subtotal.toFixed(2)}</span>
                                 </div>
                                 <div className="flex justify-between text-gray-500">
                                     <span>Shipping</span>
-                                    <span className="text-black font-bold">{shippingCost === 0 ? "Complimentary" : `$${shippingCost.toFixed(2)}`}</span>
+                                    <span className="text-white font-bold">{shippingCost === 0 ? "Complimentary" : `$${shippingCost.toFixed(2)}`}</span>
                                 </div>
                                 <div className="flex justify-between text-gray-500">
                                     <span>Sales Tax (8%)</span>
-                                    <span className="text-black font-bold">${taxAmount.toFixed(2)}</span>
+                                    <span className="text-white font-bold">${taxAmount.toFixed(2)}</span>
                                 </div>
-                                <div className="pt-6 flex justify-between text-lg font-black tracking-widest border-t border-gray-100">
+                                <div className="pt-6 flex justify-between text-lg font-black tracking-widest border-t border-neutral-800">
                                     <span>Total Amount</span>
                                     <span>${totalAmount.toFixed(2)}</span>
                                 </div>
                             </div>
 
-                            <div className="bg-white p-6 border border-gray-100 space-y-4">
+                            <div className="bg-black p-6 border border-neutral-800 space-y-4">
                                 <div className="flex items-center gap-3">
-                                    <ShieldCheck className="w-5 h-5 text-black" />
+                                    <ShieldCheck className="w-5 h-5 text-white" />
                                     <p className="text-[10px] font-bold uppercase tracking-widest">Global Fashion Standards</p>
                                 </div>
                                 <p className="text-[9px] text-gray-400 leading-relaxed uppercase tracking-widest">
