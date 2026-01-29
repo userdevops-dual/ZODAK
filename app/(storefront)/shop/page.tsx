@@ -192,7 +192,7 @@ export default function ShopPage() {
             </div>
 
             {/* Product Grid */}
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-5xl">
                 {filteredProducts.length > 0 ? (
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                         {filteredProducts.map((product) => (
