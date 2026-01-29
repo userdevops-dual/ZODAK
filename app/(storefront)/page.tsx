@@ -42,7 +42,7 @@ export default function Home() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="https://videos.pexels.com/video-files/7653556/7653556-uhd_2560_1440_30fps.mp4" type="video/mp4" />
+            <source src="https://videos.pexels.com/video-files/855564/855564-hd_1920_1080_24fps.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/60" />
         </div>
