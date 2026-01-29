@@ -82,6 +82,15 @@ export function PremiumHoodieSection() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
+      {/* Animated Dark Gradient Background */}
+      <motion.div
+        className="absolute inset-0 z-0 bg-gradient-to-r from-black via-blue-950 to-red-950"
+        style={{ backgroundSize: "200% 100%" }}
+        initial={{ backgroundPosition: "0% 50%" }}
+        whileInView={{ backgroundPosition: "100% 50%" }}
+        viewport={{ once: true, margin: "-20%" }}
+        transition={{ duration: 3, ease: "easeOut" }}
+      />
 
       {/* Background Text Overlay */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none select-none z-0">
