@@ -84,7 +84,7 @@ export function PremiumHoodieSection() {
     >
       {/* Animated Dark Gradient Background */}
       <motion.div
-        className="absolute inset-0 z-0 bg-gradient-to-r from-black via-blue-950 to-red-950"
+        className="absolute inset-0 z-0 bg-gradient-to-r from-black via-neutral-900 to-black"
         style={{ backgroundSize: "200% 100%" }}
         initial={{ backgroundPosition: "0% 50%" }}
         whileInView={{ backgroundPosition: "100% 50%" }}
