@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { PremiumHoodieSection } from "@/components/product/PremiumHoodieSection";
 import { VolumeOneSection } from "@/components/product/VolumeOneSection";
@@ -13,6 +14,16 @@ import { ProductCard } from "@/components/product/ProductCard";
 import { motion } from "framer-motion";
 
 export default function Home() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log("Video autoplay failed:", error);
+      });
+    }
+  }, []);
+
   // Select first 4 hoodies for the "Featured" section
   const featuredHoodies = products.filter(p => p.category.toLowerCase() === "hoodies").slice(0, 4);
 
@@ -24,6 +35,7 @@ export default function Home() {
         {/* Background */}
         <div className="absolute inset-0 z-0 opacity-60">
           <video
+            ref={videoRef}
             autoPlay
             muted
             loop

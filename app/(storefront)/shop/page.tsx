@@ -90,9 +90,9 @@ export default function ShopPage() {
     const activeFilterCount = selectedCategories.length;
 
     return (
-        <div className="pt-16 sm:pt-20 lg:pt-24 min-h-screen bg-white">
+        <div className="pt-16 sm:pt-20 lg:pt-24 min-h-screen bg-black text-white">
             {/* Header Bar */}
-            <div className="sticky top-14 sm:top-16 lg:top-0 z-40 bg-white border-b border-neutral-200">
+            <div className="sticky top-14 sm:top-16 lg:top-0 z-40 bg-black/80 backdrop-blur-md border-b border-neutral-800">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Navigation Buttons */}
                     <div className="flex items-center gap-4 pt-4 -mb-2">
@@ -100,7 +100,7 @@ export default function ShopPage() {
                             variant="ghost"
                             size="sm"
                             onClick={() => router.back()}
-                            className="text-[10px] uppercase tracking-widest h-8 px-2 hover:bg-neutral-100 flex items-center gap-1"
+                            className="text-[10px] uppercase tracking-widest h-8 px-2 text-neutral-400 hover:text-white hover:bg-neutral-900 flex items-center gap-1"
                         >
                             <ChevronLeft className="w-3 h-3" />
                             Back
@@ -109,7 +109,7 @@ export default function ShopPage() {
                             asChild
                             variant="ghost"
                             size="sm"
-                            className="text-[10px] uppercase tracking-widest h-8 px-2 hover:bg-neutral-100 flex items-center gap-1"
+                            className="text-[10px] uppercase tracking-widest h-8 px-2 text-neutral-400 hover:text-white hover:bg-neutral-900 flex items-center gap-1"
                         >
                             <Link href="/">
                                 <Home className="w-3 h-3" />
@@ -136,8 +136,8 @@ export default function ShopPage() {
                                 onClick={() => setShowFilterPanel(true)}
                                 className={cn(
                                     "flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-wider",
-                                    "border border-neutral-200 hover:border-neutral-400 transition-colors",
-                                    hasActiveFilters && "border-black bg-black text-white"
+                                    "border border-neutral-800 hover:border-white transition-colors text-neutral-300",
+                                    hasActiveFilters && "border-white bg-white text-black"
                                 )}
                             >
                                 <SlidersHorizontal className="w-3.5 h-3.5" />
@@ -153,7 +153,7 @@ export default function ShopPage() {
                             <div className="relative">
                                 <button
                                     onClick={() => setShowSortDropdown(!showSortDropdown)}
-                                    className="flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-wider border border-neutral-200 hover:border-neutral-400 transition-colors"
+                                    className="flex items-center gap-2 px-4 py-2 text-xs uppercase text-neutral-300 tracking-wider border border-neutral-800 hover:border-white transition-colors"
                                 >
                                     <span className="hidden sm:inline">Sort</span>
                                     <ChevronDown className={cn(
@@ -165,7 +165,7 @@ export default function ShopPage() {
                                 {showSortDropdown && (
                                     <>
                                         <div className="fixed inset-0 z-40" onClick={() => setShowSortDropdown(false)} />
-                                        <div className="absolute right-0 top-full mt-1 w-56 bg-white border border-neutral-200 shadow-xl z-50">
+                                        <div className="absolute right-0 top-full mt-1 w-56 bg-black border border-neutral-800 shadow-xl z-50">
                                             {sortOptions.map((option) => (
                                                 <button
                                                     key={option.value}
@@ -174,8 +174,8 @@ export default function ShopPage() {
                                                         setShowSortDropdown(false);
                                                     }}
                                                     className={cn(
-                                                        "flex items-center justify-between w-full px-4 py-3 text-sm text-left hover:bg-neutral-50 transition-colors",
-                                                        sortBy === option.value && "bg-neutral-50 font-medium"
+                                                        "flex items-center justify-between w-full px-4 py-3 text-sm text-left text-neutral-400 hover:bg-neutral-900 hover:text-white transition-colors",
+                                                        sortBy === option.value && "bg-neutral-900 text-white font-medium"
                                                     )}
                                                 >
                                                     {option.label}
@@ -201,11 +201,11 @@ export default function ShopPage() {
                     </div>
                 ) : (
                     <div className="py-20 text-center">
-                        <div className="w-16 h-16 mx-auto mb-4 bg-neutral-100 rounded-full flex items-center justify-center">
-                            <Filter className="w-6 h-6 text-neutral-400" />
+                        <div className="w-16 h-16 mx-auto mb-4 bg-neutral-900 rounded-full flex items-center justify-center">
+                            <Filter className="w-6 h-6 text-neutral-600" />
                         </div>
-                        <p className="text-neutral-600 mb-2">No hoods found</p>
-                        <button onClick={clearFilters} className="text-sm text-black underline">
+                        <p className="text-neutral-500 mb-2">No hoods found</p>
+                        <button onClick={clearFilters} className="text-sm text-white underline">
                             Clear all filters
                         </button>
                     </div>
@@ -215,9 +215,9 @@ export default function ShopPage() {
             {/* Filter Panel */}
             {showFilterPanel && (
                 <div className="fixed inset-0 z-50">
-                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowFilterPanel(false)} />
-                    <div className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-white shadow-2xl flex flex-col">
-                        <div className="flex items-center justify-between px-6 py-4 border-b">
+                    <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setShowFilterPanel(false)} />
+                    <div className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-black border-l border-neutral-800 shadow-2xl flex flex-col">
+                        <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-800">
                             <h2 className="text-lg font-bold uppercase tracking-widest">Filters</h2>
                             <button onClick={() => setShowFilterPanel(false)} className="p-2">
                                 <X className="w-5 h-5" />
@@ -233,12 +233,12 @@ export default function ShopPage() {
                                             key={category.id}
                                             onClick={() => toggleCategory(category.id)}
                                             className={cn(
-                                                "flex items-center justify-between w-full px-4 py-3 text-sm transition-colors",
-                                                selectedCategories.includes(category.id) ? "bg-neutral-50 font-medium" : "hover:bg-neutral-50"
+                                                "flex items-center justify-between w-full px-4 py-3 text-sm text-neutral-400 transition-colors",
+                                                selectedCategories.includes(category.id) ? "bg-neutral-900 text-white font-medium" : "hover:bg-neutral-900 hover:text-white"
                                             )}
                                         >
                                             <span>{category.label}</span>
-                                            <div className={cn("w-5 h-5 border flex items-center justify-center transition-colors", selectedCategories.includes(category.id) ? "bg-black border-black text-white" : "border-neutral-300")}>
+                                            <div className={cn("w-5 h-5 border flex items-center justify-center transition-colors", selectedCategories.includes(category.id) ? "bg-white border-white text-black" : "border-neutral-700")}>
                                                 {selectedCategories.includes(category.id) && <Check className="w-3 h-3" />}
                                             </div>
                                         </button>
@@ -247,9 +247,9 @@ export default function ShopPage() {
                             </div>
                         </div>
 
-                        <div className="px-6 py-4 border-t flex gap-3">
-                            <button onClick={clearFilters} className="flex-1 py-3 text-xs uppercase tracking-widest font-medium border border-neutral-200">Reset</button>
-                            <button onClick={() => setShowFilterPanel(false)} className="flex-1 py-3 text-xs uppercase tracking-widest font-medium bg-black text-white">Apply</button>
+                        <div className="px-6 py-4 border-t border-neutral-800 flex gap-3">
+                            <button onClick={clearFilters} className="flex-1 py-3 text-xs uppercase tracking-widest font-medium border border-neutral-700 text-neutral-300 hover:border-white hover:text-white transition-colors">Reset</button>
+                            <button onClick={() => setShowFilterPanel(false)} className="flex-1 py-3 text-xs uppercase tracking-widest font-medium bg-white text-black hover:bg-neutral-200 transition-colors">Apply</button>
                         </div>
                     </div>
                 </div>
