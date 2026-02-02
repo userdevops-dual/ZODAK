@@ -8,6 +8,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
@@ -42,77 +43,128 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-black text-white px-4">
-            <div className="w-full max-w-md space-y-8">
+        <div className="min-h-screen flex items-center justify-center bg-black text-white px-4 overflow-hidden relative">
+            {/* Background Texture/Gradient */}
+            <div className="absolute inset-0 z-0 bg-gradient-to-tr from-neutral-950 via-black to-neutral-900 opacity-40" />
+
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="w-full max-w-md space-y-10 relative z-10 p-8 sm:p-10 border border-neutral-900 bg-black/50 backdrop-blur-xl"
+            >
                 {/* Logo */}
-                <div className="text-center">
-                    <Link href="/" className="text-3xl font-bold tracking-[0.3em]">ZODAK</Link>
-                    <p className="mt-4 text-sm uppercase tracking-widest text-gray-500">Sign in to your account</p>
+                <div className="text-center space-y-2">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                    >
+                        <Link href="/" className="text-4xl md:text-5xl font-black tracking-tighter text-white mix-blend-difference hover:opacity-80 transition-opacity">
+                            ZODAK
+                        </Link>
+                    </motion.div>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="text-[10px] uppercase tracking-[0.3em] text-neutral-400"
+                    >
+                        Member Access
+                    </motion.p>
                 </div>
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-6">
                     {error && (
-                        <div className="bg-red-50 border border-red-200 text-red-600 text-sm p-4 text-center">
+                        <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            className="bg-red-950/30 border border-red-900/50 text-red-400 text-xs p-3 text-center tracking-wide"
+                        >
                             {error}
-                        </div>
+                        </motion.div>
                     )}
 
-                    <div className="space-y-2">
-                        <Label className="text-[10px] uppercase tracking-widest font-bold">Email Address</Label>
-                        <Input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="rounded-none border-gray-200 focus:border-black h-14 touch-target"
-                            placeholder="you@example.com"
-                        />
-                    </div>
-
-                    <div className="space-y-2">
-                        <div className="flex justify-between items-center">
-                            <Label className="text-[10px] uppercase tracking-widest font-bold">Password</Label>
-                            <Link href="/forgot-password" className="text-[10px] uppercase tracking-widest text-gray-500 hover:text-black">
-                                Forgot Password?
-                            </Link>
-                        </div>
-                        <Input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            className="rounded-none border-gray-200 focus:border-black h-14 touch-target"
-                            placeholder="••••••••"
-                        />
-                    </div>
-
-                    <Button
-                        type="submit"
-                        disabled={isLoading}
-                        className="w-full h-14 bg-black text-white hover:bg-neutral-800 rounded-none uppercase tracking-[0.2em] text-xs font-bold touch-target"
+                    <motion.div
+                        className="space-y-6"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
                     >
-                        {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Sign In"}
-                    </Button>
+                        <div className="space-y-2 group">
+                            <Label className="text-[9px] uppercase tracking-[0.2em] font-medium text-neutral-400 group-focus-within:text-white transition-colors">
+                                Email
+                            </Label>
+                            <Input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                className="rounded-none bg-neutral-900/50 border-neutral-800 text-white placeholder:text-neutral-600 focus:border-white focus:bg-black h-12 text-sm tracking-wider transition-all duration-300"
+                                placeholder="name@example.com"
+                            />
+                        </div>
+
+                        <div className="space-y-2 group">
+                            <div className="flex justify-between items-center">
+                                <Label className="text-[9px] uppercase tracking-[0.2em] font-medium text-neutral-400 group-focus-within:text-white transition-colors">
+                                    Password
+                                </Label>
+                                <Link href="/forgot-password" className="text-[9px] uppercase tracking-widest text-neutral-500 hover:text-white transition-colors">
+                                    Forgot?
+                                </Link>
+                            </div>
+                            <Input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                className="rounded-none bg-neutral-900/50 border-neutral-800 text-white placeholder:text-neutral-600 focus:border-white focus:bg-black h-12 text-sm tracking-wider transition-all duration-300"
+                                placeholder="••••••••"
+                            />
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.6 }}
+                    >
+                        <Button
+                            type="submit"
+                            disabled={isLoading}
+                            className="w-full h-12 bg-white text-black hover:bg-neutral-200 rounded-none uppercase tracking-[0.2em] text-[10px] font-bold transition-all duration-300 transform hover:tracking-[0.25em]"
+                        >
+                            {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Sign In"}
+                        </Button>
+                    </motion.div>
                 </form>
 
-                {/* Signup Link */}
-                <div className="text-center pt-6 border-t border-gray-100">
-                    <p className="text-sm text-gray-500">
-                        Don&apos;t have an account?{" "}
-                        <Link href="/signup" className="text-black font-bold uppercase tracking-wider text-xs hover:underline">
-                            Create Account
-                        </Link>
-                    </p>
-                </div>
+                {/* Footer Links */}
+                <motion.div
+                    className="space-y-6 pt-6 border-t border-neutral-900"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                >
+                    <div className="text-center">
+                        <p className="text-xs text-neutral-500">
+                            New to Zodak?{" "}
+                            <Link href="/signup" className="text-white ml-2 font-bold uppercase tracking-wider text-[10px] hover:underline hover:text-neutral-300 transition-colors">
+                                Create Account
+                            </Link>
+                        </p>
+                    </div>
 
-                {/* Continue as Guest */}
-                <div className="text-center">
-                    <Link href="/shop" className="text-[10px] uppercase tracking-widest text-gray-400 hover:text-black">
-                        Continue as Guest →
-                    </Link>
-                </div>
-            </div>
+                    <div className="text-center">
+                        <Link href="/shop" className="text-[9px] uppercase tracking-[0.25em] text-neutral-600 hover:text-white transition-colors inline-flex items-center gap-1 group">
+                            Continue as Guest
+                            <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                        </Link>
+                    </div>
+                </motion.div>
+            </motion.div>
         </div>
     );
 }
