@@ -93,7 +93,6 @@ export default function LoginPage() {
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
                                 className="rounded-none bg-neutral-900/50 border-neutral-800 text-white placeholder:text-neutral-600 focus:border-white focus:bg-black h-11 text-xs tracking-wider transition-all duration-300 pointer-events-auto"
-                                placeholder=""
                             />
                         </div>
 
@@ -113,7 +112,6 @@ export default function LoginPage() {
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
                                     className="rounded-none bg-neutral-900/50 border-neutral-800 text-white placeholder:text-neutral-600 focus:border-white focus:bg-black h-11 text-xs tracking-wider transition-all duration-300 pr-10 pointer-events-auto"
-                                    placeholder=""
                                 />
                                 <button
                                     type="button"

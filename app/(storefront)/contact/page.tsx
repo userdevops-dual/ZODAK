@@ -79,7 +79,6 @@ export default function ContactPage() {
                             <Label className="text-[10px] uppercase tracking-widest font-bold">Message</Label>
                             <textarea
                                 className="w-full border border-gray-200 focus:border-black p-4 min-h-[150px] focus:outline-none"
-                                placeholder="How can we help?"
                             />
                         </div>
 

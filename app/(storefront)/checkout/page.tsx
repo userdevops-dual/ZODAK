@@ -223,16 +223,16 @@ export default function CheckoutPage() {
                                         <div className="space-y-4">
                                             <div className="space-y-3">
                                                 <Label className="text-[10px] uppercase tracking-widest font-bold">Card Number</Label>
-                                                <Input placeholder="0000 0000 0000 0000" className="rounded-none border-neutral-700 bg-black focus:border-white h-12 text-white placeholder:text-neutral-600" />
+                                                <Input className="rounded-none border-neutral-700 bg-black focus:border-white h-12 text-white placeholder:text-neutral-600" />
                                             </div>
                                             <div className="grid grid-cols-2 gap-6">
                                                 <div className="space-y-3">
                                                     <Label className="text-[10px] uppercase tracking-widest font-bold">Expiry Date</Label>
-                                                    <Input placeholder="MM / YY" className="rounded-none border-neutral-700 bg-black focus:border-white h-12 text-white placeholder:text-neutral-600" />
+                                                    <Input className="rounded-none border-neutral-700 bg-black focus:border-white h-12 text-white placeholder:text-neutral-600" />
                                                 </div>
                                                 <div className="space-y-3">
                                                     <Label className="text-[10px] uppercase tracking-widest font-bold">CVV</Label>
-                                                    <Input placeholder="123" className="rounded-none border-neutral-700 bg-black focus:border-white h-12 text-white placeholder:text-neutral-600" />
+                                                    <Input className="rounded-none border-neutral-700 bg-black focus:border-white h-12 text-white placeholder:text-neutral-600" />
                                                 </div>
                                             </div>
                                         </div>

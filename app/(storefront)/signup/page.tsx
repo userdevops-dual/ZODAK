@@ -94,7 +94,6 @@ export default function SignupPage() {
                             onChange={(e) => setName(e.target.value)}
                             required
                             className="rounded-none border-neutral-200 focus:border-black h-11 text-xs px-4"
-                            placeholder=""
                         />
                     </div>
 
@@ -106,7 +105,6 @@ export default function SignupPage() {
                             onChange={(e) => setEmail(e.target.value)}
                             required
                             className="rounded-none border-neutral-200 focus:border-black h-11 text-xs px-4"
-                            placeholder=""
                         />
                     </div>
 
@@ -119,7 +117,6 @@ export default function SignupPage() {
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                                 className="rounded-none border-neutral-200 focus:border-black h-11 text-xs px-4 pr-10"
-                                placeholder=""
                             />
                             <button
                                 type="button"
@@ -140,7 +137,6 @@ export default function SignupPage() {
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 required
                                 className="rounded-none border-neutral-200 focus:border-black h-11 text-xs px-4 pr-10"
-                                placeholder=""
                             />
                             <button
                                 type="button"

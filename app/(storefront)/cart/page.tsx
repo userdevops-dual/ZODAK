@@ -220,7 +220,6 @@ export default function CartPage() {
                                 <div className="flex bg-black border border-neutral-800">
                                     <input
                                         type="text"
-                                        placeholder="Enter code"
                                         value={promoCode}
                                         onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
                                         className="bg-transparent px-3 py-2 text-xs w-full focus:outline-none uppercase tracking-widest text-white placeholder:text-neutral-600"
