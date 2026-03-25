@@ -7,12 +7,13 @@ import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { Loader2, Eye, EyeOff } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
@@ -43,7 +44,7 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-black text-white px-4 overflow-hidden relative">
+        <div className="min-h-screen flex flex-col items-center justify-start bg-black text-white px-4 pt-24 sm:pt-32 relative overflow-hidden">
             {/* Background Texture/Gradient */}
             <div className="absolute inset-0 z-0 bg-gradient-to-tr from-neutral-950 via-black to-neutral-900 opacity-40" />
 
@@ -51,48 +52,38 @@ export default function LoginPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="w-full max-w-md space-y-10 relative z-10 p-8 sm:p-10 border border-neutral-900 bg-black/50 backdrop-blur-xl"
+                className="w-full max-w-sm space-y-8 relative z-10 p-6 sm:p-8 border border-neutral-900 bg-black/50 backdrop-blur-xl"
             >
-                {/* Logo */}
-                <div className="text-center space-y-2">
+                {/* Header Section (Compact) */}
+                <div className="text-center">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                        <Link href="/" className="text-4xl md:text-5xl font-black tracking-tighter text-white mix-blend-difference hover:opacity-80 transition-opacity">
-                            ZODAK
-                        </Link>
+                        <h1 className="text-sm font-black uppercase tracking-[0.3em] text-white">Member Access</h1>
                     </motion.div>
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-[10px] uppercase tracking-[0.3em] text-neutral-400"
-                    >
-                        Member Access
-                    </motion.p>
                 </div>
 
-                {/* Form */}
-                <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Form (Compact) */}
+                <form onSubmit={handleSubmit} className="space-y-5">
                     {error && (
                         <motion.div
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: "auto" }}
-                            className="bg-red-950/30 border border-red-900/50 text-red-400 text-xs p-3 text-center tracking-wide"
+                            className="bg-red-950/30 border border-red-900/50 text-red-400 text-[10px] p-3 text-center uppercase tracking-widest"
                         >
                             {error}
                         </motion.div>
                     )}
 
                     <motion.div
-                        className="space-y-6"
+                        className="space-y-5"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.8, delay: 0.5 }}
                     >
-                        <div className="space-y-2 group">
+                        <div className="space-y-1.5 group">
                             <Label className="text-[9px] uppercase tracking-[0.2em] font-medium text-neutral-400 group-focus-within:text-white transition-colors">
                                 Email
                             </Label>
@@ -101,12 +92,12 @@ export default function LoginPage() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
-                                className="rounded-none bg-neutral-900/50 border-neutral-800 text-white placeholder:text-neutral-600 focus:border-white focus:bg-black h-12 text-sm tracking-wider transition-all duration-300"
-                                placeholder="name@example.com"
+                                className="rounded-none bg-neutral-900/50 border-neutral-800 text-white placeholder:text-neutral-600 focus:border-white focus:bg-black h-11 text-xs tracking-wider transition-all duration-300 pointer-events-auto"
+                                placeholder=""
                             />
                         </div>
 
-                        <div className="space-y-2 group">
+                        <div className="space-y-1.5 group">
                             <div className="flex justify-between items-center">
                                 <Label className="text-[9px] uppercase tracking-[0.2em] font-medium text-neutral-400 group-focus-within:text-white transition-colors">
                                     Password
@@ -115,14 +106,23 @@ export default function LoginPage() {
                                     Forgot?
                                 </Link>
                             </div>
-                            <Input
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                                className="rounded-none bg-neutral-900/50 border-neutral-800 text-white placeholder:text-neutral-600 focus:border-white focus:bg-black h-12 text-sm tracking-wider transition-all duration-300"
-                                placeholder="••••••••"
-                            />
+                            <div className="relative">
+                                <Input
+                                    type={showPassword ? "text" : "password"}
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                    className="rounded-none bg-neutral-900/50 border-neutral-800 text-white placeholder:text-neutral-600 focus:border-white focus:bg-black h-11 text-xs tracking-wider transition-all duration-300 pr-10 pointer-events-auto"
+                                    placeholder=""
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-white transition-colors focus:outline-none"
+                                >
+                                    {showPassword ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                                </button>
+                            </div>
                         </div>
                     </motion.div>
 
@@ -130,18 +130,19 @@ export default function LoginPage() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.6 }}
+                        className="pt-2"
                     >
                         <Button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full h-12 bg-white text-black hover:bg-neutral-200 rounded-none uppercase tracking-[0.2em] text-[10px] font-bold transition-all duration-300 transform hover:tracking-[0.25em]"
+                            className="w-full h-12 bg-white text-black hover:bg-neutral-200 rounded-none uppercase tracking-[0.2em] text-[10px] font-black transition-all duration-300 transform active:scale-95"
                         >
-                            {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Sign In"}
+                            {isLoading ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "Sign In"}
                         </Button>
                     </motion.div>
                 </form>
 
-                {/* Footer Links */}
+                {/* Footer Section */}
                 <motion.div
                     className="space-y-6 pt-6 border-t border-neutral-900"
                     initial={{ opacity: 0 }}
@@ -149,9 +150,9 @@ export default function LoginPage() {
                     transition={{ duration: 0.8, delay: 0.8 }}
                 >
                     <div className="text-center">
-                        <p className="text-xs text-neutral-500">
+                        <p className="text-[10px] uppercase tracking-widest text-neutral-500">
                             New to Zodak?{" "}
-                            <Link href="/signup" className="text-white ml-2 font-bold uppercase tracking-wider text-[10px] hover:underline hover:text-neutral-300 transition-colors">
+                            <Link href="/signup" className="text-white ml-1 font-black hover:underline transition-colors">
                                 Create Account
                             </Link>
                         </p>

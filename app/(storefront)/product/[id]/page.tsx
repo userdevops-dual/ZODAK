@@ -79,7 +79,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
                         {/* Image Gallery - Swipe Enabled on Mobile */}
                         <div className="lg:col-span-6 mb-8 lg:mb-0 h-full">
-                            <div className="relative aspect-[3/4] w-full bg-neutral-900 overflow-hidden rounded-sm">
+                            <div className="relative aspect-square md:aspect-[4/5] lg:aspect-[3/4] w-full lg:max-w-[480px] mx-auto bg-neutral-900 overflow-hidden rounded-sm">
                                 <AnimatePresence mode="wait">
                                     <motion.div
                                         key={currentImageIndex}
@@ -135,7 +135,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
                             {/* Thumbnails - Desktop Only */}
                             {product.images.length > 1 && (
-                                <div className="hidden lg:flex gap-4 mt-6 overflow-x-auto pb-2 scrollbar-hide">
+                                <div className="hidden lg:flex justify-center gap-4 mt-6 overflow-x-auto pb-2 scrollbar-hide lg:max-w-[480px] mx-auto">
                                     {product.images.map((img, i) => (
                                         <button
                                             key={i}
@@ -211,13 +211,16 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                             </div>
 
                             {/* Buttons */}
-                            <div className="hidden lg:flex gap-3 mb-5">
-                                <button onClick={handleAddToBag} disabled={isAdding || isAdded} className={cn("flex-1 h-12 text-xs uppercase tracking-wider transition-all font-bold", isAdded ? "bg-green-600 text-white" : "bg-white text-black hover:bg-neutral-200")}>
-                                    {isAdding ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : isAdded ? <span className="flex items-center justify-center gap-1"><Check className="w-4 h-4" />Added</span> : `Add to Cart — $${(product.price * quantity).toFixed(2)}`}
-                                </button>
-                                <button className="flex-1 h-12 text-xs uppercase tracking-wider border border-white text-white hover:bg-white hover:text-black transition-all font-bold">
-                                    Buy Now
-                                </button>
+                            <div className="sticky bottom-16 sm:bottom-0 z-[60] py-4 bg-black border-t border-neutral-800 lg:bg-transparent lg:static lg:py-0 lg:mb-6 lg:border-none">
+                                <div className="flex gap-3">
+                                    <button onClick={handleAddToBag} disabled={isAdding || isAdded} className={cn("flex-1 w-full h-14 sm:h-16 text-sm uppercase tracking-widest transition-colors duration-300 font-bold active:scale-[0.98] border", isAdded ? "bg-green-600 text-white border-green-600" : sizeError ? "bg-red-900/50 text-red-200 border-red-800" : "bg-white text-black border-white hover:bg-black hover:text-white")}>
+                                        {isAdding ? <Loader2 className="w-5 h-5 animate-spin mx-auto" /> : isAdded ? <span className="flex items-center justify-center gap-2"><Check className="w-5 h-5" />Added to Cart</span> : sizeError ? "Select Size First" : "Add to Cart"}
+                                    </button>
+                                    <button className="flex-1 w-full h-14 sm:h-16 text-sm uppercase tracking-widest border border-neutral-700 text-white hover:border-white hover:bg-white/5 transition-colors duration-300 font-bold active:scale-[0.98] bg-black">
+                                        Buy Now
+                                    </button>
+                                </div>
+                                {sizeError && <p className="lg:hidden text-red-500 text-xs font-bold uppercase tracking-widest text-center mt-3 animate-bounce">Please choose a size</p>}
                             </div>
 
                             {/* Trust */}
@@ -252,42 +255,18 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                 <div className="border-t border-neutral-800 py-24 mb-20 lg:mb-0 mt-10 lg:mt-24">
                     <div className="container mx-auto px-4">
                         <h2 className="text-2xl lg:text-3xl font-bold uppercase tracking-widest mb-12">You May Also Like</h2>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-                            {relatedProducts.map((p) => <ProductCard key={p.id} product={p} />)}
+                        <div className="flex flex-row flex-wrap justify-center lg:justify-start gap-4 md:gap-6 group/grid pb-12 max-w-5xl mx-auto">
+                            {relatedProducts.map((p) => (
+                                <div key={p.id} className="w-[calc(50%-0.5rem)] lg:w-[calc(25%-18px)] transition-[width] duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] lg:group-hover/grid:w-[calc(20%-18px)] lg:hover:!w-[calc(40%-18px)] shrink-0 aspect-[2/3] lg:aspect-auto lg:h-[480px]">
+                                    <ProductCard product={p} isExpanding={true} />
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Mobile Sticky CTA */}
-            <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-neutral-900/90 backdrop-blur-xl border-t border-neutral-800 p-4 safe-area-bottom z-50">
-                <div className="flex gap-3">
-                    <div className="w-1/3 border border-neutral-800 flex items-center justify-between text-white">
-                        <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-full h-12 flex items-center justify-center">
-                            <Minus className="w-4 h-4" />
-                        </button>
-                        <span className="text-sm font-bold w-full text-center">{quantity}</span>
-                        <button onClick={() => setQuantity(Math.min(product.stockLimit, quantity + 1))} className="w-full h-12 flex items-center justify-center">
-                            <Plus className="w-4 h-4" />
-                        </button>
-                    </div>
-                    <button
-                        onClick={handleAddToBag}
-                        disabled={isAdding || isAdded}
-                        className={cn(
-                            "flex-1 h-12 text-xs font-black uppercase tracking-[0.2em] shadow-2xl transition-all duration-300 active:scale-95",
-                            sizeError ? "bg-red-900/50 text-red-200 border border-red-800" :
-                                isAdded ? "bg-green-600 text-white" : "bg-white text-black"
-                        )}
-                    >
-                        {isAdding ? <Loader2 className="w-5 h-5 animate-spin mx-auto" /> :
-                            isAdded ? "Added to Bag ✓" :
-                                sizeError ? "Select Size First" :
-                                    `Add — $${(product.price * quantity).toFixed(0)}`}
-                    </button>
-                </div>
-                {sizeError && <p className="text-red-600 text-[10px] font-bold uppercase tracking-widest text-center mt-2 animate-bounce">Please choose a size</p>}
-            </div>
+
         </>
     );
 }

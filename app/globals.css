@@ -402,3 +402,16 @@
 .bg-gradient-radial {
   background-image: radial-gradient(circle, var(--tw-gradient-stops));
 }
+
+@layer utilities {
+  .accordion-grid {
+    transition: grid-template-columns 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  @media (min-width: 1024px) {
+    .accordion-grid:has(> :nth-child(4n + 1):hover) { grid-template-columns: 2.5fr 1fr 1fr 1fr; }
+    .accordion-grid:has(> :nth-child(4n + 2):hover) { grid-template-columns: 1fr 2.5fr 1fr 1fr; }
+    .accordion-grid:has(> :nth-child(4n + 3):hover) { grid-template-columns: 1fr 1fr 2.5fr 1fr; }
+    .accordion-grid:has(> :nth-child(4n + 0):hover), 
+    .accordion-grid:has(> :nth-child(4n):hover) { grid-template-columns: 1fr 1fr 1fr 2.5fr; }
+  }
+}

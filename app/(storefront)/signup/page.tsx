@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Check } from "lucide-react";
+import { Loader2, Check, Eye, EyeOff } from "lucide-react";
 
 export default function SignupPage() {
     const [name, setName] = useState("");
@@ -16,6 +16,8 @@ export default function SignupPage() {
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -69,84 +71,103 @@ export default function SignupPage() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-white px-4 py-12">
-            <div className="w-full max-w-md space-y-8">
-                {/* Logo */}
+        <div className="min-h-screen flex flex-col items-center justify-start bg-white px-4 pt-24 sm:pt-32">
+            <div className="w-full max-w-sm space-y-6">
+                {/* Header Section (Compact) */}
                 <div className="text-center">
-                    <Link href="/" className="text-3xl font-bold tracking-[0.3em]">ZODAK</Link>
-                    <p className="mt-4 text-sm uppercase tracking-widest text-gray-500">Create your account</p>
+                    <h1 className="text-sm font-black uppercase tracking-[0.3em] text-neutral-900">Create Account</h1>
                 </div>
 
-                {/* Form */}
-                <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Form (Compact) */}
+                <form onSubmit={handleSubmit} className="space-y-4">
                     {error && (
-                        <div className="bg-red-50 border border-red-200 text-red-600 text-sm p-4 text-center">
+                        <div className="bg-red-50 border border-red-100 text-red-600 text-[10px] uppercase tracking-widest p-3 text-center animate-in fade-in slide-in-from-top-1">
                             {error}
                         </div>
                     )}
 
-                    <div className="space-y-2">
-                        <Label className="text-[10px] uppercase tracking-widest font-bold">Full Name</Label>
+                    <div className="space-y-1.5">
+                        <Label className="text-[9px] uppercase tracking-[0.2em] font-bold text-neutral-500">Full Name</Label>
                         <Input
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
-                            className="rounded-none border-gray-200 focus:border-black h-14 touch-target"
-                            placeholder="John Doe"
+                            className="rounded-none border-neutral-200 focus:border-black h-11 text-xs px-4"
+                            placeholder=""
                         />
                     </div>
 
-                    <div className="space-y-2">
-                        <Label className="text-[10px] uppercase tracking-widest font-bold">Email Address</Label>
+                    <div className="space-y-1.5">
+                        <Label className="text-[9px] uppercase tracking-[0.2em] font-bold text-neutral-500">Email Address</Label>
                         <Input
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="rounded-none border-gray-200 focus:border-black h-14 touch-target"
-                            placeholder="you@example.com"
+                            className="rounded-none border-neutral-200 focus:border-black h-11 text-xs px-4"
+                            placeholder=""
                         />
                     </div>
 
-                    <div className="space-y-2">
-                        <Label className="text-[10px] uppercase tracking-widest font-bold">Password</Label>
-                        <Input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            className="rounded-none border-gray-200 focus:border-black h-14 touch-target"
-                            placeholder="Min. 6 characters"
-                        />
+                    <div className="space-y-1.5">
+                        <Label className="text-[9px] uppercase tracking-[0.2em] font-bold text-neutral-500">Password</Label>
+                        <div className="relative">
+                            <Input
+                                type={showPassword ? "text" : "password"}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                className="rounded-none border-neutral-200 focus:border-black h-11 text-xs px-4 pr-10"
+                                placeholder=""
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-black transition-colors focus:outline-none"
+                            >
+                                {showPassword ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                            </button>
+                        </div>
                     </div>
 
-                    <div className="space-y-2">
-                        <Label className="text-[10px] uppercase tracking-widest font-bold">Confirm Password</Label>
-                        <Input
-                            type="password"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            required
-                            className="rounded-none border-gray-200 focus:border-black h-14 touch-target"
-                            placeholder="••••••••"
-                        />
+                    <div className="space-y-1.5">
+                        <Label className="text-[9px] uppercase tracking-[0.2em] font-bold text-neutral-500">Confirm Password</Label>
+                        <div className="relative">
+                            <Input
+                                type={showConfirmPassword ? "text" : "password"}
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                required
+                                className="rounded-none border-neutral-200 focus:border-black h-11 text-xs px-4 pr-10"
+                                placeholder=""
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-black transition-colors focus:outline-none"
+                            >
+                                {showConfirmPassword ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                            </button>
+                        </div>
                     </div>
 
-                    <Button
-                        type="submit"
-                        disabled={isLoading}
-                        className="w-full h-14 bg-black text-white hover:bg-neutral-800 rounded-none uppercase tracking-[0.2em] text-xs font-bold touch-target"
-                    >
-                        {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Create Account"}
-                    </Button>
+                    <div className="pt-2">
+                        <Button
+                            type="submit"
+                            disabled={isLoading}
+                            className="w-full h-12 bg-black text-white hover:bg-neutral-800 rounded-none uppercase tracking-[0.2em] text-[10px] font-black transition-all active:scale-95"
+                        >
+                            {isLoading ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "Register"}
+                        </Button>
+                    </div>
                 </form>
 
-                {/* Login Link */}
-                <div className="text-center pt-6 border-t border-gray-100">
-                    <p className="text-sm text-gray-500">
+                {/* Footer Section */}
+                <div className="text-center pt-6 border-t border-neutral-100">
+                    <p className="text-[10px] uppercase tracking-widest text-neutral-400">
                         Already have an account?{" "}
-                        <Link href="/login" className="text-black font-bold uppercase tracking-wider text-xs hover:underline">
+                        <Link href="/login" className="text-black font-black hover:underline ml-1">
                             Sign In
                         </Link>
                     </p>

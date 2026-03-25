@@ -5,13 +5,22 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import { ArrowLeft, CheckCircle2, Lock, ShieldCheck, Trash2 } from "lucide-react";
+import { ArrowLeft, Check, Lock, ShieldCheck, Trash2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import confetti from "canvas-confetti";
 
 export default function CheckoutPage() {
     const [isProcessing, setIsProcessing] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    
+    // Form State
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [address, setAddress] = useState("");
+    const [city, setCity] = useState("");
+    const [postalCode, setPostalCode] = useState("");
     const { items, subtotal, taxAmount, shippingCost, totalAmount, clearCart, removeFromCart, totalItems } = useCart();
 
     const handleCheckout = async (e: React.FormEvent) => {
@@ -31,22 +40,72 @@ export default function CheckoutPage() {
                     })),
                     total: totalAmount,
                     shippingDetails: {
-                        // In production, collect from form
+                        firstName,
+                        lastName,
+                        email,
+                        address,
+                        city,
+                        postalCode
                     }
                 })
             });
 
             if (!response.ok) {
-                throw new Error("Failed to create order");
+                const errText = await response.text();
+                throw new Error(errText);
             }
 
             setIsProcessing(false);
             setIsSuccess(true);
+            
+            // Scroll to top instantly so they see the confirmation and confetti
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            
+            // --- 8K ULTRA-QUALITY LUXURY CONFETTI ---
+            const duration = 3 * 1000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 45, spread: 360, ticks: 100, zIndex: 9999, scalar: 1.2, colors: ['#FFFF00', '#FF0000', '#0000FF', '#FF69B4'] };
 
-            setTimeout(() => {
-                clearCart();
-                window.location.href = "/";
-            }, 3000);
+            const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
+
+            const interval: any = setInterval(function() {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 60 * (timeLeft / duration);
+                
+                // Wide burst
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+                    gravity: 0.8,
+                    drift: randomInRange(-0.5, 0.5)
+                }));
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+                    gravity: 0.8,
+                    drift: randomInRange(-0.5, 0.5)
+                }));
+            }, 250);
+
+            // Immediate Big Center Burst
+            confetti({
+                particleCount: 200,
+                spread: 100,
+                origin: { y: 0.5 },
+                colors: ['#FFFF00', '#FF0000', '#0000FF', '#FF69B4'],
+                scalar: 1.5,
+                zIndex: 10000,
+                gravity: 0.7,
+                startVelocity: 60
+            });
+
+            // Note: Auto-redirect removed per user request. User will manually navigate via button.
+            clearCart();
         } catch (error) {
             console.error("Checkout error:", error);
             setIsProcessing(false);
@@ -68,13 +127,19 @@ export default function CheckoutPage() {
 
     if (isSuccess) {
         return (
-            <div className="min-h-screen flex flex-col items-center justify-center container mx-auto px-4 text-center">
-                <CheckCircle2 className="w-20 h-20 text-white mb-8 animate-in icon-in" />
-                <h1 className="text-4xl font-bold uppercase tracking-[0.2em] mb-4">Order Confirmed</h1>
-                <p className="text-gray-500 mb-8 max-w-md mx-auto">
-                    Thank you for your purchase. We've sent a confirmation email to your registry. Your order will be shipped shortly.
+            <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-4 text-center">
+                <div className="relative mb-10 w-24 h-24 flex items-center justify-center bg-[#22C55E] rounded-full shadow-[0_0_40px_rgba(34,197,94,0.3)] animate-in zoom-in duration-500">
+                    <Check className="w-12 h-12 text-white" strokeWidth={4} />
+                </div>
+                <h1 className="text-4xl lg:text-5xl font-black uppercase tracking-[0.3em] mb-6">Order Confirmed</h1>
+                <p className="text-neutral-400 mb-12 max-w-lg mx-auto text-sm lg:text-base leading-relaxed tracking-wide uppercase">
+                    Thank you for your purchase. We&apos;ve sent a detailed confirmation email to your registry. Your order will be shipped shortly.
                 </p>
-                <p className="text-[10px] uppercase tracking-widest text-gray-400">Redirecting to homepage...</p>
+                <div className="flex flex-col items-center gap-4">
+                    <Button asChild className="rounded-none bg-white text-black px-10 py-7 uppercase tracking-[0.2em] text-xs font-black hover:bg-neutral-200 transition-all">
+                        <Link href="/">Back to Home Page</Link>
+                    </Button>
+                </div>
             </div>
         );
     }
@@ -114,27 +179,27 @@ export default function CheckoutPage() {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
                                     <div className="space-y-2 sm:space-y-3">
                                         <Label className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold text-gray-400">First Name</Label>
-                                        <Input required className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
+                                        <Input required value={firstName} onChange={e => setFirstName(e.target.value)} className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
                                     </div>
                                     <div className="space-y-2 sm:space-y-3">
                                         <Label className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold">Last Name</Label>
-                                        <Input required className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
+                                        <Input required value={lastName} onChange={e => setLastName(e.target.value)} className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
                                     </div>
                                     <div className="sm:col-span-2 space-y-2 sm:space-y-3">
                                         <Label className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold">Email Address</Label>
-                                        <Input required type="email" className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
+                                        <Input required type="email" value={email} onChange={e => setEmail(e.target.value)} className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
                                     </div>
                                     <div className="sm:col-span-2 space-y-2 sm:space-y-3">
                                         <Label className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold">Street Address</Label>
-                                        <Input required className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
+                                        <Input required value={address} onChange={e => setAddress(e.target.value)} className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
                                     </div>
                                     <div className="space-y-2 sm:space-y-3">
                                         <Label className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold">City / District</Label>
-                                        <Input required className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
+                                        <Input required value={city} onChange={e => setCity(e.target.value)} className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
                                     </div>
                                     <div className="space-y-2 sm:space-y-3">
                                         <Label className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold">Postal Code</Label>
-                                        <Input required className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
+                                        <Input required value={postalCode} onChange={e => setPostalCode(e.target.value)} className="rounded-none border-neutral-800 bg-neutral-900 focus:border-white h-12 sm:h-13 lg:h-14 touch-target text-white" />
                                     </div>
                                 </div>
                             </div>

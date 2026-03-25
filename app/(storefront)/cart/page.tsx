@@ -251,10 +251,10 @@ export default function CartPage() {
                                 </Button>
 
                                 <div className="flex flex-col items-center gap-3 pt-1">
-                                    <div className="flex justify-center gap-3 opacity-60 grayscale hover:grayscale-0 transition-all cursor-default text-white">
+                                    <div className="flex justify-center gap-3 items-center opacity-100 text-white cursor-default">
                                         {/* Visa */}
                                         <div className="h-5 w-8 flex items-center justify-center p-0.5" title="Visa">
-                                            <svg viewBox="0 0 36 11" fill="currentColor" className="w-full h-full">
+                                            <svg viewBox="0 0 36 11" fill="currentColor" className="w-full h-full text-white">
                                                 <path d="M14.653 0l-2.072 10.603H8.381L11.597 0h3.056zm9.255 10.375c-.714 0-1.258-.22-1.572-.733L19.56 1.834h3.193l.634 3.328c.189 1.05.79 1.488 1.405 1.488.083 0 .157-.005.228-.016L24.588 1.83H28l-2.28 10.435c-.482-.047-1.118-.11-1.89-.11M36 10.603h-2.887c-.896 0-1.613-.538-1.928-1.78l-2.618-9.92h3.582l.53 2.92c.138.748.561 1.096 1.157 1.096.398 0 .805-.183.805-.183L33.953 0H36v10.603m-23.73-10.6L9.623 7.828c-.138.657-.611.85-1.121.85-.062 0-.256-.007-.406-.023L9.62 1.83h3.55L12.27 10.6H8.97S4.168 2.058 4.095 1.76C3.93 1.135 2.14.73 0 .54v-.52h6.634c.82 0 1.517.585 1.706 1.442l.666 3.66L10.59.003h1.68z" />
                                             </svg>
                                         </div>
@@ -267,7 +267,7 @@ export default function CartPage() {
                                         </div>
                                         {/* Apple Pay */}
                                         <div className="h-5 w-8 flex items-center justify-center p-0.5" title="Apple Pay">
-                                            <svg viewBox="0 0 54 22" fill="currentColor" className="w-full h-full">
+                                            <svg viewBox="0 0 54 22" fill="currentColor" className="w-full h-full text-white">
                                                 <path d="M7.749 7.37c-.035-2.022 1.66-2.992 1.733-3.037-.946-1.378-2.42-1.57-2.94-1.59-1.25-.13-2.443.737-3.078.737-.633 0-1.616-.72-2.66-.7-2.735.02-5.26 1.638-6.666 4.155-1.42 2.535-.37 6.275 1.002 8.324.673 1.003 1.47 2.13 2.52 2.088 1.01-.04 1.39-.675 2.615-.675 1.22 0 1.572.673 2.637.653 1.085-.022 1.77-1.026 2.434-2.046.764-1.17 1.08-2.304 1.09-2.36-.024-.01-2.13-.853-2.15-3.376M5.56 2.083c.563-.715.942-1.71.838-2.705-.812.034-1.796.565-2.376 1.272-.518.625-.972 1.636-.85 2.602.905.074 1.832-.46 2.388-1.168" />
                                                 <path d="M19.16 11.23h1.492v-3.79h2.327v-1.19h-5.07v1.19h2.327l.002 3.79h-.002zM27.276 11.232l-1.077-4.982h-1.32l-.994 4.982h1.167l.192-1.127h1.696l.205 1.127h1.13zm-1.847-1.956l.488-2.784.62 2.784h-1.108zM31.295 12.834c.552 0 .963-.12 1.303-.346v-1.16c-.22.18-.553.308-.887.308-.557 0-.756-.37-.756-1.14l.002-3.053h1.583v-1.19h-1.583V4.86h-1.164v1.39h-.84v1.19h.84v3.1c0 1.503.626 2.292 1.502 2.292" />
                                                 <path d="M12.915 11.23h1.37V6.25h1.75c1.284 0 2.09.845 2.09 2.06s-.8 2.09-2.074 2.09h-.615v.83h2.64v1.19h-5.16v-1.19zm2.46-3.83h-.326v1.94h.478c.557 0 .86-.33.86-.92 0-.66-.377-1.02-.998-1.02" />
@@ -275,7 +275,7 @@ export default function CartPage() {
                                             </svg>
                                         </div>
                                         {/* PayPal */}
-                                        <div className="h-5 w-8 flex items-center justify-center p-0.5" title="PayPal">
+                                        <div className="h-5 w-8 flex items-center justify-center p-0.5 bg-white/10 rounded-sm" title="PayPal">
                                             <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-[#003087]">
                                                 <path d="M20.067 8.478c.969-.385 1.25-1.905.655-3.32-.42-1.01-1.306-1.72-2.274-2.07C17.152 2.622 14.86 2.62 14.86 2.62H8.385l-.766 4.88-.363 2.306-.05 2.126-.145.92-.88 5.6h3.407l.488-3.093s.06-.356.402-.387l.21.016 1.636-.01c2.25 0 4.07-.677 5.088-2.675.292-.563.38-1.27.13-1.834h.002c1.232-.016 2.12-.524 2.525-1.928z" />
                                             </svg>

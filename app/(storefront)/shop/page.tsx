@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { ProductCard } from "@/components/product/ProductCard";
 import { Filter, ChevronDown, X, Check, SlidersHorizontal, ChevronLeft, Home } from "lucide-react";
 import { products } from "@/lib/products";
@@ -33,7 +33,34 @@ export default function ShopPage() {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [showFilterPanel, setShowFilterPanel] = useState(false);
     const [showSortDropdown, setShowSortDropdown] = useState(false);
+    const [isScrollingUp, setIsScrollingUp] = useState(true);
     const router = useRouter();
+
+    useEffect(() => {
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        const handleScroll = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const currentScrollY = window.scrollY;
+                    if (currentScrollY < 10) {
+                        setIsScrollingUp(true);
+                    } else if (currentScrollY > lastScrollY) {
+                        setIsScrollingUp(false);
+                    } else if (currentScrollY < lastScrollY - 5) {
+                        setIsScrollingUp(true);
+                    }
+                    lastScrollY = currentScrollY > 0 ? currentScrollY : 0;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     // Toggle category selection
     const toggleCategory = (categoryId: string) => {
@@ -92,30 +119,37 @@ export default function ShopPage() {
     return (
         <div className="pt-16 sm:pt-20 lg:pt-24 min-h-screen bg-black text-white">
             {/* Header Bar */}
-            <div className="sticky top-14 sm:top-16 lg:top-0 z-40 bg-black/80 backdrop-blur-md border-b border-neutral-800">
+            <div className="sticky top-14 sm:top-16 z-40 bg-black/80 backdrop-blur-md border-b border-neutral-800">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Navigation Buttons */}
-                    <div className="flex items-center gap-4 pt-4 -mb-2">
-                        <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => router.back()}
-                            className="text-[10px] uppercase tracking-widest h-8 px-2 text-neutral-400 hover:text-white hover:bg-neutral-900 flex items-center gap-1"
-                        >
-                            <ChevronLeft className="w-3 h-3" />
-                            Back
-                        </Button>
-                        <Button
-                            asChild
-                            variant="ghost"
-                            size="sm"
-                            className="text-[10px] uppercase tracking-widest h-8 px-2 text-neutral-400 hover:text-white hover:bg-neutral-900 flex items-center gap-1"
-                        >
-                            <Link href="/">
-                                <Home className="w-3 h-3" />
-                                Home
-                            </Link>
-                        </Button>
+                    <div className={cn(
+                        "grid transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]",
+                        isScrollingUp ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 pointer-events-none"
+                    )}>
+                        <div className="overflow-hidden">
+                            <div className="flex items-center gap-4 pt-2 pb-1">
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => router.back()}
+                                    className="text-[10px] uppercase tracking-widest h-8 px-2 text-neutral-400 hover:text-white hover:bg-neutral-900 flex items-center gap-1"
+                                >
+                                    <ChevronLeft className="w-3 h-3" />
+                                    Back
+                                </Button>
+                                <Button
+                                    asChild
+                                    variant="ghost"
+                                    size="sm"
+                                    className="text-[10px] uppercase tracking-widest h-8 px-2 text-neutral-400 hover:text-white hover:bg-neutral-900 flex items-center gap-1"
+                                >
+                                    <Link href="/">
+                                        <Home className="w-3 h-3" />
+                                        Home
+                                    </Link>
+                                </Button>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="flex items-center justify-between h-14">
@@ -192,11 +226,13 @@ export default function ShopPage() {
             </div>
 
             {/* Product Grid */}
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-5xl">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
                 {filteredProducts.length > 0 ? (
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-7">
                         {filteredProducts.map((product) => (
-                            <ProductCard key={product.id} product={product} />
+                            <div key={product.id}>
+                                <ProductCard product={product} />
+                            </div>
                         ))}
                     </div>
                 ) : (

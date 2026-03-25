@@ -25,13 +25,9 @@ export function CartDrawer() {
             </SheetTrigger>
             <SheetContent side="right" className="w-full sm:max-w-md p-0 flex flex-col h-full bg-neutral-900 border-l border-neutral-800 text-white">
                 <SheetHeader className="p-6 border-b border-neutral-800 flex flex-row items-center justify-between">
-                    <SheetTitle className="text-sm uppercase tracking-[0.2em] font-black">
+                    <SheetTitle className="text-sm uppercase tracking-[0.2em] font-black w-full text-center sm:text-left">
                         Your Bag ({totalItems})
                     </SheetTitle>
-                    <SheetClose className="opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none">
-                        <X className="h-4 w-4" />
-                        <span className="sr-only">Close</span>
-                    </SheetClose>
                 </SheetHeader>
 
                 <div className="flex-1 overflow-y-auto p-6 space-y-8 no-scrollbar">
